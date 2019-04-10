@@ -1228,6 +1228,7 @@ namespace AgOpenGPS
 
             //Task.Run(() =>  mf.mazeGrid.BuildMazeGridArray());
             mf.mazeGrid.BuildMazeGridArray();
+            mf.rateMap.BuildRateMap();
 
             mf.yt.ResetCreatedYouTurn();
         }

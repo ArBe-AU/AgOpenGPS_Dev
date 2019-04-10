@@ -79,6 +79,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripBatman = new System.Windows.Forms.ToolStripDropDownButton();
             this.lblAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripBtnCamera = new System.Windows.Forms.ToolStripDropDownButton();
             this.CameraNorthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,7 +114,6 @@
             this.toolstripHeadland = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripResetTrip = new System.Windows.Forms.ToolStripMenuItem();
             this.stripOnlineGPS = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripBatman = new System.Windows.Forms.ToolStripDropDownButton();
             this.lblNorthing = new System.Windows.Forms.Label();
             this.lblEasting = new System.Windows.Forms.Label();
             this.lblSpeed = new System.Windows.Forms.Label();
@@ -150,7 +150,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.txtBoxSendArduino = new System.Windows.Forms.TextBox();
             this.txtBoxRecvArduino = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
             this.lblFlowRateLeft = new System.Windows.Forms.Label();
             this.lblRateAppliedActualLeft = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -172,6 +171,7 @@
             this.btnGPSData = new System.Windows.Forms.Button();
             this.btnPerimeter = new System.Windows.Forms.Button();
             this.DataPage = new System.Windows.Forms.TabPage();
+            this.lblVR = new System.Windows.Forms.Label();
             this.btnSmallRight2 = new System.Windows.Forms.Button();
             this.btnSmallLeft2 = new System.Windows.Forms.Button();
             this.btnBigRight2 = new System.Windows.Forms.Button();
@@ -678,6 +678,15 @@
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             // 
+            // toolStripBatman
+            // 
+            resources.ApplyResources(this.toolStripBatman, "toolStripBatman");
+            this.toolStripBatman.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBatman.Image = global::AgOpenGPS.Properties.Resources.Batman48;
+            this.toolStripBatman.Name = "toolStripBatman";
+            this.toolStripBatman.ShowDropDownArrow = false;
+            this.toolStripBatman.Click += new System.EventHandler(this.toolStripBatman_Click);
+            // 
             // lblAreaRate
             // 
             resources.ApplyResources(this.lblAreaRate, "lblAreaRate");
@@ -944,15 +953,6 @@
             this.stripOnlineGPS.Name = "stripOnlineGPS";
             this.stripOnlineGPS.Value = 1;
             // 
-            // toolStripBatman
-            // 
-            resources.ApplyResources(this.toolStripBatman, "toolStripBatman");
-            this.toolStripBatman.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBatman.Image = global::AgOpenGPS.Properties.Resources.Batman48;
-            this.toolStripBatman.Name = "toolStripBatman";
-            this.toolStripBatman.ShowDropDownArrow = false;
-            this.toolStripBatman.Click += new System.EventHandler(this.toolStripBatman_Click);
-            // 
             // lblNorthing
             // 
             resources.ApplyResources(this.lblNorthing, "lblNorthing");
@@ -1211,7 +1211,6 @@
             this.rate2Page5.Controls.Add(this.label21);
             this.rate2Page5.Controls.Add(this.txtBoxSendArduino);
             this.rate2Page5.Controls.Add(this.txtBoxRecvArduino);
-            this.rate2Page5.Controls.Add(this.label23);
             this.rate2Page5.Controls.Add(this.lblFlowRateLeft);
             this.rate2Page5.Controls.Add(this.lblRateAppliedActualLeft);
             this.rate2Page5.Controls.Add(this.label28);
@@ -1245,11 +1244,6 @@
             resources.ApplyResources(this.txtBoxRecvArduino, "txtBoxRecvArduino");
             this.txtBoxRecvArduino.Name = "txtBoxRecvArduino";
             this.txtBoxRecvArduino.ReadOnly = true;
-            // 
-            // label23
-            // 
-            resources.ApplyResources(this.label23, "label23");
-            this.label23.Name = "label23";
             // 
             // lblFlowRateLeft
             // 
@@ -1419,6 +1413,7 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DataPage.Controls.Add(this.lblVR);
             this.DataPage.Controls.Add(this.btnSmallRight2);
             this.DataPage.Controls.Add(this.btnSmallLeft2);
             this.DataPage.Controls.Add(this.btnBigRight2);
@@ -1462,6 +1457,12 @@
             this.DataPage.Cursor = System.Windows.Forms.Cursors.Arrow;
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
+            // 
+            // lblVR
+            // 
+            resources.ApplyResources(this.lblVR, "lblVR");
+            this.lblVR.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblVR.Name = "lblVR";
             // 
             // btnSmallRight2
             // 
@@ -2631,7 +2632,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtBoxSendArduino;
         private System.Windows.Forms.TextBox txtBoxRecvArduino;
-        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button btnSelectRate2;
         private System.Windows.Forms.Button btnSelectRate1;
         private System.Windows.Forms.ToolStripMenuItem enterSimCoordsToolStripMenuItem;
@@ -2738,6 +2738,7 @@
         private System.Windows.Forms.ToolStripMenuItem deletePathMenu;
         private System.Windows.Forms.ToolStripMenuItem pausePathMenu;
         public System.Windows.Forms.ToolStripMenuItem goPathMenu;
+        private System.Windows.Forms.Label lblVR;
     }
 }
 

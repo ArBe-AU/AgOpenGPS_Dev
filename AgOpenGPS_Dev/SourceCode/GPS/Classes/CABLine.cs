@@ -395,6 +395,9 @@ namespace AgOpenGPS
                         GL.Color3(0, 0.9, 0);
                         isOnTramLine = true;
                     }
+
+                    if (isOnTramLine) mf.mc.relayRateData[mf.mc.rdTramLine] = 1;
+                    else mf.mc.relayRateData[mf.mc.rdTramLine] = 0;
                 }
 
                 //based on line pass, make ref purple

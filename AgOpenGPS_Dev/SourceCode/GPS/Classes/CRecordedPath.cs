@@ -252,11 +252,6 @@ namespace AgOpenGPS
                 }
                 return;
             }
-            //else
-            //{
-            //    shuttleDubinsList?.Clear();
-            //    return;
-            //}
 
             //find a path from start to goal - diagnostic, but also used later
             mazeList = mf.mazeGrid.SearchForPath(pt2, goal);

@@ -923,6 +923,8 @@ namespace AgOpenGPS
                     mc.relayRateData[mc.rdRateSetPointLeftHi] = 0;
                     mc.relayRateData[mc.rdRateSetPointRightLo] = 0;
                     mc.relayRateData[mc.rdRateSetPointRightHi] = 0;
+                    mc.relayRateData[mc.rdTramLine] = 0;
+
                     RateRelayOutToPort(mc.relayRateData, CModuleComm.numRelayRateDataItems);
                 }
             }
@@ -1061,49 +1063,49 @@ namespace AgOpenGPS
 
         private void btnGenerateSelf_Click(object sender, EventArgs e)
         {
-            //if (bnd.bndArr[0].isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
-            //{
-            //    //field too small or moving
-            //    if (bnd.bndArr[0].bndLine.Count < 200) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
-            //    if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
+            if (bnd.bndArr[0].isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
+            {
+                //field too small or moving
+                if (bnd.bndArr[0].bndLine.Count < 200) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
+                if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
 
-            //    using (var form = new FormSelf(this))
-            //    {
-            //        var result = form.ShowDialog();
-            //        if (result == DialogResult.OK)
-            //        {
-            //        }
-            //    }
-            //}
-            //else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
+                using (var form = new FormSelf(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                    }
+                }
+            }
+            else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
         }
 
         private void btnGoSelf_Click(object sender, EventArgs e)
         {
-            //if (!self.isPausedSelfDriving)
-            //{
-            //    //already running?
-            //    if (self.isSelfDriving)
-            //    {
-            //        self.StopSelfDriving();
-            //        return;
-            //    }
+            if (!self.isPausedSelfDriving)
+            {
+                //already running?
+                if (self.isSelfDriving)
+                {
+                    self.StopSelfDriving();
+                    return;
+                }
 
-            //    if (!self.StartSelfDriving())
-            //    {
-            //        //Cancel the self - something went seriously wrong
-            //        self.StopSelfDriving();
-            //    }
-            //    else
-            //    {
-            //        btnGoSelf.Image = Properties.Resources.AutoStop;
-            //    }
-            //}
-            //else
-            //{
-            //    self.isPausedSelfDriving = false;
-            //    btnPauseDrivingPath.BackColor = Color.Lime;
-            //}
+                if (!self.StartSelfDriving())
+                {
+                    //Cancel the self - something went seriously wrong
+                    self.StopSelfDriving();
+                }
+                else
+                {
+                    btnGoSelf.Image = Properties.Resources.AutoStop;
+                }
+            }
+            else
+            {
+                self.isPausedSelfDriving = false;
+                btnPauseDrivingPath.BackColor = Color.Lime;
+            }
         }
 
         private void btnManualAutoDrive_Click(object sender, EventArgs e)
@@ -2061,7 +2063,7 @@ namespace AgOpenGPS
         {
             if (camera.zoomValue <= 20) camera.zoomValue += camera.zoomValue * 0.1;
             else camera.zoomValue += camera.zoomValue * 0.05;
-            if (camera.zoomValue > 120) camera.zoomValue = 120;
+            if (camera.zoomValue > 220) camera.zoomValue = 220;
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
         }
@@ -3412,6 +3414,27 @@ namespace AgOpenGPS
                 if (startCounter > 50 && recvCounter < 20 && isNTRIP_RequiredOn)
                 {
                     IncrementNTRIPWatchDog();
+                }
+
+                double vr = 0;
+                int cnt = rateMap.mapList.Count;
+                if (cnt > 5)
+                {
+                    for (int i = 0; i < cnt; i++)
+                    {
+                        if (Math.Abs(rateMap.mapList[i].easting - pn.fix.easting) < 9)
+                        {
+                            if (Math.Abs(rateMap.mapList[i].northing - pn.fix.northing) < 9)
+                            {                                
+                                lblVR.Text = rateMap.mapList[i].heading.ToString();
+                                vr = rateMap.mapList[i].heading;
+                                break;
+                            }
+                        }
+                    }
+
+                    rcd.rateLeft = vr / 3;
+                    lblRateSetpointLeft.Text = rcd.rateLeft.ToString("N1");
                 }
 
                 //Have we connection

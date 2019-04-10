@@ -1036,6 +1036,7 @@ namespace AgOpenGPS
                         gf.BuildGeoFenceLines();
 
                         mazeGrid.BuildMazeGridArray();
+
                     }
 
                     catch (Exception e)
@@ -1044,6 +1045,8 @@ namespace AgOpenGPS
                         form.Show();
                         WriteErrorLog("Load Boundary Line" + e.ToString());
                     }
+
+
                 }
             } 
 
@@ -1254,7 +1257,23 @@ namespace AgOpenGPS
                     }
                 }
             }
-                                                                              
+
+
+
+
+
+            //////////////////////////////////////////////////////////////////////////
+            rateMap.BuildRateMap();
+
+
+
+
+
+
+
+
+
+
         }//end of open file
 
         //creates the field file when starting new field

@@ -68,8 +68,10 @@ namespace AgOpenGPS
                 CalcFrustum();
                 worldGrid.DrawFieldSurface();
                 //GL.Disable(EnableCap.DepthTest);
-                GL.Disable(EnableCap.Texture2D);
                 GL.Enable(EnableCap.Blend);
+
+                rateMap.DrawArr();
+                //GL.Disable(EnableCap.Texture2D);
 
                 ////if grid is on draw it
                 if (isGridOn) worldGrid.DrawWorldGrid(camera.gridZoom);
@@ -173,6 +175,9 @@ namespace AgOpenGPS
                 turn.DrawClosestPoint();
 
                 //if (bnd.bndArr[0].isSet) mazeGrid.DrawArr();
+                //if (bnd.bndArr[0].isSet) rateMap.DrawArr();
+                //if (bnd.bndArr[0].isSet) rateMap.DrawBob();
+
 
 
                 //GL.PointSize(4.0f);
@@ -1215,10 +1220,10 @@ namespace AgOpenGPS
                 fieldCenterY = (maxFieldY + minFieldY) / 2.0;
             }
 
-            minFieldX -= 8;
-            minFieldY -= 8;
-            maxFieldX += 8;
-            maxFieldY += 8;
+            //minFieldX -= 8;
+            //minFieldY -= 8;
+            //maxFieldX += 8;
+            //maxFieldY += 8;
 
             if (isMetric)
             {
