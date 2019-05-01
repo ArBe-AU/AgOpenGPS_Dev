@@ -311,7 +311,6 @@ namespace AgOpenGPS
             //A generated Path
             self = new CSelf(this);
 
-
             //start the stopwatch
             swFrame.Start();
 
@@ -1099,6 +1098,9 @@ namespace AgOpenGPS
             //reset headland
             //for (int i = 0; i < FormGPS.MAXHEADS; i++) hlArr[i].ResetHeadland();
 
+            //reset the rate map
+            rateMap.mapList?.Clear();
+
             //update the menu
             fieldToolStripMenuItem.Text = gStr.gsStartNewField;
 
@@ -1116,7 +1118,7 @@ namespace AgOpenGPS
             btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
 
             ////turn off path record
-            recPath.recList.Clear();
+            recPath.recList?.Clear();
             if (recPath.isRecordOn)
             {
                 recPath.isRecordOn = false;

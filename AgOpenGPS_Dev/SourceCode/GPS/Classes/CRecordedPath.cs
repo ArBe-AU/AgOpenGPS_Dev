@@ -184,10 +184,6 @@ namespace AgOpenGPS
                 pathCount = cnt - B;
                 if (pathCount < 3)
                 {
-                    //check if close to home position
-                    //    double distSqr = glm.DistanceSquared(pivotAxlePosRP.easting, pivotAxlePosRP.northing, homePos.easting, homePos.northing);
-                    //if (distSqr < 3)
-                    //{
                     StopDrivingRecordedPath();
                     return;
                 }

@@ -29,7 +29,7 @@ namespace AgOpenGPS
         public int cells { get; set; }
 
         //constructor
-        public CCellDec(int _lines, int _cells)
+        public CCellDec( int _lines, int _cells)
         {
             lines = _lines;
             cells = _cells;
@@ -58,16 +58,15 @@ namespace AgOpenGPS
     public class CSelf
     {
         private readonly FormGPS mf;
-        public vec3 pint1 = new vec3();
-        public vec3 pint2 = new vec3();
+        public vec3 pint = new vec3();
 
         //the clicked last pass if negative intial turn left else right.
         public int lastPassNumber = 0;
 
         //position and autosteer
         private vec3 pivotPos = new vec3();
-
         public vec3 homePos = new vec3();
+
         public double distanceFromRefLine, distanceFromCurrentLine, refLineSide = 1.0;
         private int A, B, C;
         public double abFixHeadingDelta, segmentHeading;
@@ -85,8 +84,20 @@ namespace AgOpenGPS
         //list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
         public List<vec3> dubinsList = new List<vec3>();
 
-        public bool isBtnFollowOn, isEndOfTheRecLine, isRecordOn;
-        public bool isPausedSelfDriving, isSelfDriving, isFollowingDubinsToPath, isFollowingRecPath, isFollowingDubinsHome;
+        public List<vec3> mazeList = new List<vec3>();
+
+        //the dubins path to get there
+        //public List<CRecPathPt> shuttleDubinsList = new List<CRecPathPt>();
+
+        //public int dubListCount;
+
+
+        ////list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
+        //public List<vec3> shortestDubinsList = new List<vec3>();
+
+
+        public bool isBtnFollowOn, isEndOfABLines;
+        public bool isPausedSelfDriving, isSelfDriving, isDrivingToABStart, isDrivingAB, isDrivingBackHome;
 
         //list of single pointed AB Lines
         public List<vec3> linePtList = new List<vec3>();
@@ -100,12 +111,110 @@ namespace AgOpenGPS
         //list of pointed AB Lines
         public List<List<vec3>> lineList = new List<List<vec3>>();
 
-        readonly private List<CMorseLine> mLine = new List<CMorseLine>();
+        private List<CMorseLine> mLine = new List<CMorseLine>();
 
         //constructor
         public CSelf(FormGPS _f)
         {
             mf = _f;
+        }
+
+        public void UpdatePosition()
+        {
+            if (isDrivingToABStart)
+            {
+                //set a speed of 11 kmh
+                mf.sim.stepDistance = 11 / 17.86;
+
+                pivotPos = mf.pivotAxlePos;
+
+                FindGoalPointDubinsPath(dubListCount);
+                PurePursuit();
+
+                //check if close to AB Lines start area
+                double distSqr = glm.DistanceSquared(pivotPos.northing, pivotPos.easting, mf.ABLine.refPoint1.northing, mf.ABLine.refPoint1.easting);
+                if (distSqr < 5)
+                {
+                    isDrivingAB = true;
+                    isSelfDriving = true;
+
+                    isDrivingToABStart = false;
+                    isDrivingBackHome = false;
+                    isEndOfABLines = false;
+                    isPausedSelfDriving = false;
+
+                    dubList.Clear();
+                    dubinsList.Clear();
+                    mf.yt.ResetYouTurn();
+
+                    //make sure auto is all on!
+                    if (!mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                    if (!mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+
+                    //make sure we turn the right way first
+                    if (lastPassNumber > 0)
+                    {
+                        if (mf.yt.isYouTurnRight) mf.btnSwapDirection.PerformClick();
+                    }
+                    else
+                    {
+                        if (!mf.yt.isYouTurnRight) mf.btnSwapDirection.PerformClick();
+                    }
+
+                    //do the exit sequence to start - normally triggered by uturn
+                    mf.seq.DoManualExitSequence();
+                }
+            }
+
+            if (isDrivingAB)
+            {
+                if (Math.Abs(mf.ABLine.passNumber) >= Math.Abs(lastPassNumber))
+                {
+                    //turn off and reset
+                    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                    if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+                    mf.yt.ResetYouTurn();
+
+                    isDrivingBackHome = true;
+                    isSelfDriving = true;
+                    isEndOfABLines = true;
+
+                    isDrivingToABStart = false;
+                    isDrivingAB = false;
+                    isPausedSelfDriving = false;
+
+                    CDubins.turningRadius = mf.vehicle.minTurningRadius * 1.5;
+
+                    //get the dubins for approach to recorded path
+                    GetDubinsPath(homePos);
+                    dubListCount = dubList.Count;
+
+                    //has a valid dubins path been created?
+                    if (dubListCount == 0) StopSelfDriving();
+
+                    //pull up and shut everything off
+                    mf.seq.DoManualEntrySequence();
+                }
+            }
+            
+            if (isDrivingBackHome)
+            {
+                mf.sim.stepDistance = 12 / 17.86;
+                pivotPos = mf.pivotAxlePos;
+
+                FindGoalPointDubinsPath(dubListCount);
+                PurePursuit();
+
+                //check if close to home position
+                double distSqr = glm.DistanceSquared(pivotPos.easting, pivotPos.northing, homePos.easting, homePos.northing);
+                if (distSqr < 5)
+                {
+                    StopSelfDriving();
+                }
+            }
+
+            //if paused, set the sim to 0
+            if (isPausedSelfDriving) mf.sim.stepDistance = 0 / 17.86;
         }
 
         public bool StartSelfDriving()
@@ -139,83 +248,35 @@ namespace AgOpenGPS
             mf.yt.ResetYouTurn();
 
             //technically all good if we get here so set all the flags
-            isFollowingDubinsHome = false;
-            isFollowingRecPath = false;
-            isFollowingDubinsToPath = true;
-            isEndOfTheRecLine = false;
-            currentPositonIndex = 0;
+            isDrivingToABStart = true;
             isSelfDriving = true;
 
-            mf.btnDrivePath.Image = Properties.Resources.AutoGo;
+            isDrivingBackHome = false;
+            isDrivingAB = false;
+            isEndOfABLines = false;
             isPausedSelfDriving = false;
+
+            currentPositonIndex = 0;
+
+            mf.btnDrivePath.Image = Properties.Resources.AutoGo;
+
+            //pull up and shut everything off
+            mf.seq.DoManualEntrySequence();
+
             return true;
         }
 
         public void StopSelfDriving()
         {
-            isFollowingDubinsHome = false;
-            isFollowingRecPath = false;
-            isFollowingDubinsToPath = false;
+            isDrivingBackHome = false;
+            isDrivingAB = false;
+            isDrivingToABStart = false;
             dubList.Clear();
             dubinsList.Clear();
             mf.sim.stepDistance = 0;
             isSelfDriving = false;
             mf.btnGoSelf.Image = Properties.Resources.AutoGo;
             isPausedSelfDriving = false;
-        }
-
-        public bool trig;
-        public double north;
-
-        private CMazePath Maze;
-
-        public int[] m_iMaze;
-        public int m_iRowDimensions;
-        public int m_iColDimensions;
-        public List<vec3> mazeList = new List<vec3>();
-        //public List<int> mazeList = new List<int>();
-
-        public void MakeMaze(int _y, int _x)
-        {
-            m_iRowDimensions = _y;
-            m_iColDimensions = _x;
-            m_iMaze = new int[m_iRowDimensions * m_iColDimensions];
-
-            //row is Y, col is X   int[Y,X] [i,j] [row,col]
-            vec2 pot = new vec2();
-
-            mf.yt.triggerDistanceOffset += 3;
-            mf.turn.BuildTurnLines();
-
-            for (int i = 0; i < mf.self.m_iRowDimensions; i++)
-            {
-                for (int j = 0; j < mf.self.m_iColDimensions; j++)
-                {
-                    pot.easting = (j * 2) + (int)mf.minFieldX;
-                    pot.northing = (i * 2) + (int)mf.minFieldY;
-                    if (!mf.turn.PointInsideWorkArea(pot))
-                    {
-                        m_iMaze[(i * m_iColDimensions) + j] = 1;
-                    }
-                    else
-                    {
-                        m_iMaze[(i * m_iColDimensions) + j] = 0;
-                    }
-                }
-            }
-
-            mf.yt.triggerDistanceOffset -= 3;
-            mf.turn.BuildTurnLines();
-
-            Maze = new CMazePath(m_iRowDimensions, m_iColDimensions, m_iMaze);
-        }
-
-        public void SolveMaze()
-        {
-            //vec3 pt1;
-            //vec3 pt2;
-            //mazeList = Maze.Search((int)((pint1.northing - mf.minFieldY) / 2), (int)((pint1.easting - mf.minFieldX) / 2),
-            //    (int)((pint2.northing - mf.minFieldY) / 2), (int)((pint2.easting - mf.minFieldX) / 2));
         }
 
         public void BuildLines()
@@ -313,7 +374,7 @@ namespace AgOpenGPS
 
             for (int passLine = 1; passLine < numLines; passLine++)
             {
-                ptsInPassLine = lineList[passLine].Count - 1;
+                ptsInPassLine = lineList[passLine].Count-1;
                 currentBnd = (int)lineList[passLine][ptsInPassLine].heading;
                 if (currentBnd == lastCurrentBnd)
                 {
@@ -327,6 +388,7 @@ namespace AgOpenGPS
                     step = 1;
                 }
             }
+
             //capture the last pass
             CCellDec cdeclast = new CCellDec(step, lastCurrentBnd);
             lastCurrentBnd = currentBnd;
@@ -379,133 +441,122 @@ namespace AgOpenGPS
             }
         }
 
-        public void UpdatePosition()
-        {
-            if (isFollowingDubinsToPath)
-            {
-                //set a speed of 7 kmh
-                mf.sim.stepDistance = 11 / 17.86;
-
-                pivotPos = mf.pivotAxlePos;
-
-                FindGoalPointDubinsPath(dubListCount);
-                PurePursuit();
-
-                //check if close to recorded path
-                double distSqr = glm.DistanceSquared(pivotPos.northing, pivotPos.easting, mf.ABLine.refPoint1.northing, mf.ABLine.refPoint1.easting);
-                if (distSqr < 3)
-                {
-                    //isFollowingRecPath = true;
-                    isFollowingDubinsToPath = false;
-                    //isFollowingDubinsHome = true;
-                    dubList.Clear();
-                    dubinsList.Clear();
-                    mf.yt.ResetYouTurn();
-
-                    if (!mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                    if (!mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
-
-                    //make sure we turn the right way first
-                    if (lastPassNumber > 0)
-                    {
-                        if (mf.yt.isYouTurnRight) mf.btnSwapDirection.PerformClick();
-                    }
-                    else
-                    {
-                        if (!mf.yt.isYouTurnRight) mf.btnSwapDirection.PerformClick();
-                    }
-                }
-            }
-
-            //if (isFollowingRecPath)
-            //{
-            //    pivotPos = mf.pivotAxlePos;
-
-            //    FindGoalPointRecPath(recListCount);
-            //    PurePursuit();
-
-            //    //if end of the line then stop
-            //    if (!isEndOfTheRecLine)
-            //    {
-            //        mf.sim.stepDistance = recList[C].speed / 17.86;
-            //        north = recList[C].northing;
-
-            //        //section control - only if different click the button
-            //        bool autoBtn = (mf.autoBtnState == FormGPS.btnStates.Auto);
-            //        trig = autoBtn;
-            //        if (autoBtn != recList[C].autoBtnState) mf.btnSectionOffAutoOn.PerformClick();
-            //    }
-            //    else
-            //    {
-            //        //create the dubins path based on start and goal to start of recorded path
-            //        GetDubinsPath(homePos);
-            //        dubListCount = dubList.Count;
-
-            //        //its too small
-            //        if (dubListCount < 5)
-            //        {
-            //            StopDrivingRecordedPath();
-            //        }
-
-            //        //set all the flags
-            //        isFollowingDubinsHome = true;
-            //        isFollowingRecPath = false;
-            //        isFollowingDubinsToPath = false;
-            //        isEndOfTheRecLine = false;
-            //    }
-            //}
-
-            if (isFollowingDubinsHome)
-            {
-                mf.sim.stepDistance = 12 / 17.86;
-                pivotPos = mf.pivotAxlePos;
-
-                FindGoalPointDubinsPath(dubListCount);
-                PurePursuit();
-
-                //check if close to home position
-                double distSqr = glm.DistanceSquared(pivotPos.easting, pivotPos.northing, homePos.easting, homePos.northing);
-                if (distSqr < 3)
-                {
-                    StopSelfDriving();
-                }
-            }
-
-            //if paused, set the sim to 0
-            if (isPausedSelfDriving) mf.sim.stepDistance = 0 / 17.86;
-        }
-
         private void GetDubinsPath(vec3 goal)
         {
+            //CDubins dubPath = new CDubins();
+
+            ////
+            //pivotPos = mf.pivotAxlePos;
+
+            ////bump it forward
+            //vec3 pt2 = new vec3
+            //{
+            //    easting = pivotPos.easting + (Math.Sin(pivotPos.heading) * 4),
+            //    northing = pivotPos.northing + (Math.Cos(pivotPos.heading) * 4),
+            //    heading = pivotPos.heading
+            //};
+
+            ////get the dubins path vec3 point coordinates of turn
+            //dubinsList.Clear();
+            //dubinsList = dubPath.GenerateDubins(pt2, goal);
+
+            //dubinsList.Insert(0, mf.pivotAxlePos);
+
+            ////transfer point list to recPath class point style
+            //dubList.Clear();
+            //for (int i = 0; i < dubinsList.Count; i++)
+            //{
+            //    CRecPathPt pt = new CRecPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 5.0, false);
+            //    dubList.Add(pt);
+            //}
+
+            ////no longer needed
+            //dubinsList?.Clear();
+
+            CDubins.turningRadius = mf.vehicle.minTurningRadius * 2.0;
             CDubins dubPath = new CDubins();
 
-            //
+            // current psition
             pivotPos = mf.pivotAxlePos;
 
             //bump it forward
             vec3 pt2 = new vec3
             {
-                easting = pivotPos.easting + (Math.Sin(pivotPos.heading) * 4),
-                northing = pivotPos.northing + (Math.Cos(pivotPos.heading) * 4),
+                easting = pivotPos.easting + (Math.Sin(pivotPos.heading) * 3),
+                northing = pivotPos.northing + (Math.Cos(pivotPos.heading) * 3),
                 heading = pivotPos.heading
             };
 
             //get the dubins path vec3 point coordinates of turn
             dubinsList.Clear();
+            dubList.Clear();
+
             dubinsList = dubPath.GenerateDubins(pt2, goal, mf.gf);
 
-            dubinsList.Insert(0, mf.pivotAxlePos);
-
-            //transfer point list to recPath class point style
-            dubList.Clear();
-            for (int i = 0; i < dubinsList.Count; i++)
+            //if Dubins returns 0 elements, there is an unavoidable blockage in the way.
+            if (dubinsList.Count > 0)
             {
-                CRecPathPt pt = new CRecPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 5.0, false);
-                dubList.Add(pt);
+                dubinsList.Insert(0, mf.pivotAxlePos);
+
+                //transfer point list to recPath class point style
+                for (int i = 0; i < dubinsList.Count; i++)
+                {
+                    CRecPathPt pt = new CRecPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 9.0, false);
+                    dubList.Add(pt);
+                }
+                return;
             }
 
-            //no longer needed
-            dubinsList?.Clear();
+            //find a path from start to goal - diagnostic, but also used later
+            mazeList = mf.mazeGrid.SearchForPath(pt2, goal);
+
+            //you can't get anywhere!
+            if (mazeList == null) return;
+
+            //start is navigateable - maybe
+            int cnt = mazeList.Count;
+
+            if (cnt > 0)
+            {
+                {
+                    int turnRadius = (int)(3 * mf.vehicle.minTurningRadius);
+                    if (cnt > 2 * turnRadius)
+                    {
+                        mazeList.RemoveRange(0, turnRadius);
+                        cnt = mazeList.Count;
+                        mazeList.RemoveRange(cnt - turnRadius, turnRadius);
+                    }
+                }
+
+                dubinsList = dubPath.GenerateDubins(pt2, mazeList[0], mf.gf);
+                if (dubinsList.Count > 0)
+                {
+                    for (int i = 0; i < dubinsList.Count; i++)
+                    {
+                        CRecPathPt pt = new CRecPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 10.0, false);
+                        dubList.Add(pt);
+                    }
+                }
+                else
+                {
+                    return; //unable to generate a dubins to the start
+                }
+
+                for (int i = 0; i < mazeList.Count; i++)
+                {
+                    CRecPathPt pt = new CRecPathPt(mazeList[i].easting, mazeList[i].northing, mazeList[i].heading, 15.0, false);
+                    dubList.Add(pt);
+                }
+
+                dubinsList = dubPath.GenerateDubins(mazeList[mazeList.Count - 1], goal, mf.gf);
+
+                for (int i = 0; i < dubinsList.Count; i++)
+                {
+                    CRecPathPt pt = new CRecPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 11.0, false);
+                    dubList.Add(pt);
+                }
+                return;
+            }
         }
 
         private void PurePursuit()

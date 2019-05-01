@@ -11,10 +11,12 @@ namespace AgOpenGPS
         //access to the main GPS form and all its variables
         private readonly FormGPS mf = null;
 
-        readonly private double gain = 1;
+        private double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance, gain = 1;
         private Point fixPt;
 
         private bool isA = true, isB = false, isC = false;
+
+        //the current AB guidance line
         public vec2 lastABLineP1 = new vec2(0.0, 0.0);
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -22,18 +24,8 @@ namespace AgOpenGPS
             Close();
         }
 
-        private void btnMaze_Click(object sender, EventArgs e)
-        {
-            mf.self.SolveMaze();
-        }
-
         private void FormSelf_Load(object sender, EventArgs e)
         {
-            double mazeY = (mf.maxFieldY - mf.minFieldY) / 2;
-            double mazeX = (mf.maxFieldX - mf.minFieldX) / 2;
-
-            mf.self.MakeMaze((int)(mazeY), (int)mazeX);
-
             lblPasses.Text = "Start";
             int cnt = mf.self.cellDecList.Count;
             tbox1.Text = "";
@@ -55,19 +47,19 @@ namespace AgOpenGPS
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = ((double)fixPt.X) * (double)mf.maxFieldDistance / 723.0 * gain,
-                northing = ((double)fixPt.Y) * (double)mf.maxFieldDistance / 723.0 * gain,
+                easting = ((double)fixPt.X) * (double)maxFieldDistance / 723.0 * gain,
+                northing = ((double)fixPt.Y) * (double)maxFieldDistance / 723.0 * gain,
                 heading = 0
             };
 
-            plotPt.easting += mf.fieldCenterX;
-            plotPt.northing += mf.fieldCenterY;
+            plotPt.easting += fieldCenterX;
+            plotPt.northing += fieldCenterY;
 
             lblX.Text = plotPt.easting.ToString();
             lblY.Text = plotPt.northing.ToString();
 
-            mf.self.pint1.easting = plotPt.easting;
-            mf.self.pint1.northing = plotPt.northing;
+            mf.self.pint.easting = plotPt.easting;
+            mf.self.pint.northing = plotPt.northing;
 
             if (isA)
             {
@@ -82,9 +74,6 @@ namespace AgOpenGPS
                 mf.ABLine.refPoint1.easting = plotPt.easting;
                 mf.ABLine.refPoint1.northing = plotPt.northing;
 
-                mf.self.pint2.easting = plotPt.easting;
-                mf.self.pint2.northing = plotPt.northing;
-
                 isA = false;
                 isB = true;
             }
@@ -92,9 +81,9 @@ namespace AgOpenGPS
             {
                 mf.ABLine.refPoint2.easting = plotPt.easting;
                 mf.ABLine.refPoint2.northing = plotPt.northing;
-                isA = true;
+                isA = false;
                 isB = false;
-                //isC = true;
+                isC = true;
 
                 //calculate the AB Heading
                 mf.ABLine.abHeading = Math.Atan2(mf.ABLine.refPoint2.easting - mf.ABLine.refPoint1.easting, mf.ABLine.refPoint2.northing - mf.ABLine.refPoint1.northing);
@@ -109,7 +98,6 @@ namespace AgOpenGPS
 
                 mf.ABLine.isABLineSet = true;
                 mf.FileSaveABLine();
-                mf.self.SolveMaze();
             }
 
             //borrowed snap code for last line of field
@@ -157,12 +145,12 @@ namespace AgOpenGPS
                 lastABLineP2.easting = point1.easting + (Math.Sin(mf.ABLine.abHeading) * 1500.0);
                 lastABLineP2.northing = point1.northing + (Math.Cos(mf.ABLine.abHeading) * 1500.0);
 
-                //isC = false;
-                //isA = true;
+                isC = false;
+                isA = true;
                 lblPasses.Text = mf.self.lastPassNumber.ToString();
 
                 //build the lines, determine bounds
-                //mf.self.BuildLines();
+                mf.self.BuildLines();
 
                 int cnt = mf.self.cellDecList.Count;
                 tbox1.Text = "";
@@ -180,18 +168,13 @@ namespace AgOpenGPS
             GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
             GL.LoadIdentity();                  // Reset The View
 
-            //if (!isCalcMinMax)
-            //{
-            //    CalculateMinMax();
-            //    mf.self.CalculateMinMax();
-            //    //isCalcMinMax = true;
-            //}
+            CalculateMinMax();
 
             //back the camera up
-            GL.Translate(0, 0, -mf.maxFieldDistance * gain);
+            GL.Translate(0, 0, -maxFieldDistance * gain);
 
             //translate to that spot in the world
-            GL.Translate(-mf.fieldCenterX, -mf.fieldCenterY, 0);
+            GL.Translate(-fieldCenterX, -fieldCenterY, 0);
 
             GL.Color3(0, 0.6, 0.4);
 
@@ -281,57 +264,15 @@ namespace AgOpenGPS
             mf.bnd.DrawBoundaryLines();
             mf.turn.DrawTurnLines();
 
-            //Draw the maze             //row is Y, col is X   int[Y,X] [i,j]
-
-            if (mf.self.mazeList != null)
-            {
-                int ptCount = mf.self.mazeList.Count;
-                if (ptCount > 1)
-                {
-                    GL.PointSize(2.0f);
-                    GL.Begin(PrimitiveType.Points);
-                    GL.Color3(0.95f, 0.920f, 0.90f);
-                    for (int h = 0; h < ptCount; h++)
-                    {
-                        GL.Vertex3(
-                        (mf.self.mazeList[h].easting * 2) + (int)mf.minFieldX,
-                        (mf.self.mazeList[h].northing * 2) + (int)mf.minFieldY,
-                        0);
-                    }
-
-                    GL.End();
-                }
-            }
-
-            //for (int i = 0; i < mf.self.m_iRowDimensions; i++)
-            //{
-            //    for (int j = 0; j < mf.self.m_iColDimensions; j++)
-            //    {
-            //        if (mf.self.solved[i, j] == 100)
-            //        {
-            //            double east = j*5 + (int) mf.self.minFieldX;
-            //            double north = i*5 + (int)mf.self.minFieldY;
-            //            GL.Vertex3(east, north, 0.0);
-            //        }
-            //    }
-            //}
-
             GL.PointSize(8.0f);
             GL.Begin(PrimitiveType.Points);
             GL.Color3(0.95f, 0.90f, 0.0f);
-            GL.Vertex3(mf.self.pint1.easting, mf.self.pint1.northing, 0.0);
+            GL.Vertex3(mf.self.pint.easting, mf.self.pint.northing, 0.0);
             GL.End();
             GL.PointSize(1.0f);
 
             GL.Flush();
             oglSelf.SwapBuffers();
-
-            //if (!isCalcMinMax)
-            //{
-            //    CalculateMinMax();
-            //    mf.self.CalculateMinMax();
-            //    isCalcMinMax = true;
-            //}
         }
 
         private void oglSelf_Resize(object sender, EventArgs e)
@@ -366,6 +307,89 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
 
             InitializeComponent();
+        }
+
+        //determine mins maxs of patches and whole field.
+        private void CalculateMinMax()
+        {
+            minFieldX = 9999999; minFieldY = 9999999;
+            maxFieldX = -9999999; maxFieldY = -9999999;
+
+            //draw patches j= # of sections
+            for (int j = 0; j < mf.vehicle.numSuperSection; j++)
+            {
+                //every time the section turns off and on is a new patch
+                int patchCount = mf.section[j].patchList.Count;
+
+                if (patchCount > 0)
+                {
+                    //for every new chunk of patch
+                    foreach (var triList in mf.section[j].patchList)
+                    {
+                        int count2 = triList.Count;
+                        for (int i = 0; i < count2; i += 3)
+                        {
+                            double x = triList[i].easting;
+                            double y = triList[i].northing;
+
+                            //also tally the max/min of field x and z
+                            if (minFieldX > x) minFieldX = x;
+                            if (maxFieldX < x) maxFieldX = x;
+                            if (minFieldY > y) minFieldY = y;
+                            if (maxFieldY < y) maxFieldY = y;
+                        }
+                    }
+                }
+
+                //min max of the boundary
+                if (mf.bnd.bndArr[0].isSet)
+                {
+                    int bndCnt = mf.bnd.bndArr[0].bndLine.Count;
+                    for (int i = 0; i < bndCnt; i++)
+                    {
+                        double x = mf.bnd.bndArr[0].bndLine[i].easting;
+                        double y = mf.bnd.bndArr[0].bndLine[i].northing;
+
+                        //also tally the max/min of field x and z
+                        if (minFieldX > x) minFieldX = x;
+                        if (maxFieldX < x) maxFieldX = x;
+                        if (minFieldY > y) minFieldY = y;
+                        if (maxFieldY < y) maxFieldY = y;
+                    }
+                }
+
+                if (maxFieldX == -9999999 || minFieldX == 9999999 || maxFieldY == -9999999 || minFieldY == 9999999)
+                {
+                    maxFieldX = 0; minFieldX = 0; maxFieldY = 0; minFieldY = 0;
+                }
+                else
+                {
+                    //the largest distancew across field
+                    double dist = Math.Abs(minFieldX - maxFieldX);
+                    double dist2 = Math.Abs(minFieldY - maxFieldY);
+
+                    if (dist > dist2) maxFieldDistance = dist;
+                    else maxFieldDistance = dist2;
+
+                    if (maxFieldDistance < 100) maxFieldDistance = 100;
+                    if (maxFieldDistance > 19900) maxFieldDistance = 19900;
+                    //lblMax.Text = ((int)maxFieldDistance).ToString();
+
+                    fieldCenterX = (maxFieldX + minFieldX) / 2.0;
+                    fieldCenterY = (maxFieldY + minFieldY) / 2.0;
+                }
+
+                //if (isMetric)
+                //{
+                //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
+                //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
+                //}
+                //else
+                //{
+                //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
+                //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
+                //}
+            }
         }
     }
 }

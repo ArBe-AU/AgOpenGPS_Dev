@@ -41,11 +41,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblBuildLine = new System.Windows.Forms.Label();
             this.tbox1 = new System.Windows.Forms.TextBox();
-            this.lblMaxX = new System.Windows.Forms.Label();
-            this.lblMinX = new System.Windows.Forms.Label();
-            this.lblMaxY = new System.Windows.Forms.Label();
-            this.lblMinY = new System.Windows.Forms.Label();
-            this.btnMaze = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // oglSelf
@@ -74,7 +69,7 @@
             this.lblX.AutoSize = true;
             this.lblX.Font = new System.Drawing.Font("Tahoma", 12F);
             this.lblX.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblX.Location = new System.Drawing.Point(833, 98);
+            this.lblX.Location = new System.Drawing.Point(833, 10);
             this.lblX.Name = "lblX";
             this.lblX.Size = new System.Drawing.Size(18, 19);
             this.lblX.TabIndex = 184;
@@ -85,7 +80,7 @@
             this.lblY.AutoSize = true;
             this.lblY.Font = new System.Drawing.Font("Tahoma", 12F);
             this.lblY.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblY.Location = new System.Drawing.Point(833, 126);
+            this.lblY.Location = new System.Drawing.Point(833, 38);
             this.lblY.Name = "lblY";
             this.lblY.Size = new System.Drawing.Size(18, 19);
             this.lblY.TabIndex = 185;
@@ -96,7 +91,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(803, 126);
+            this.label1.Location = new System.Drawing.Point(803, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(25, 19);
             this.label1.TabIndex = 187;
@@ -107,7 +102,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(803, 98);
+            this.label2.Location = new System.Drawing.Point(803, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 19);
             this.label2.TabIndex = 186;
@@ -132,7 +127,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(803, 160);
+            this.label3.Location = new System.Drawing.Point(803, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 19);
             this.label3.TabIndex = 236;
@@ -143,7 +138,7 @@
             this.lblPasses.AutoSize = true;
             this.lblPasses.Font = new System.Drawing.Font("Tahoma", 12F);
             this.lblPasses.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblPasses.Location = new System.Drawing.Point(863, 160);
+            this.lblPasses.Location = new System.Drawing.Point(863, 72);
             this.lblPasses.Name = "lblPasses";
             this.lblPasses.Size = new System.Drawing.Size(18, 19);
             this.lblPasses.TabIndex = 235;
@@ -154,7 +149,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(803, 188);
+            this.label4.Location = new System.Drawing.Point(803, 100);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 19);
             this.label4.TabIndex = 238;
@@ -165,7 +160,7 @@
             this.lblBuildLine.AutoSize = true;
             this.lblBuildLine.Font = new System.Drawing.Font("Tahoma", 12F);
             this.lblBuildLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblBuildLine.Location = new System.Drawing.Point(863, 188);
+            this.lblBuildLine.Location = new System.Drawing.Point(863, 100);
             this.lblBuildLine.Name = "lblBuildLine";
             this.lblBuildLine.Size = new System.Drawing.Size(18, 19);
             this.lblBuildLine.TabIndex = 237;
@@ -175,67 +170,13 @@
             // 
             this.tbox1.AcceptsReturn = true;
             this.tbox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbox1.Location = new System.Drawing.Point(807, 341);
+            this.tbox1.Location = new System.Drawing.Point(807, 151);
             this.tbox1.Multiline = true;
             this.tbox1.Name = "tbox1";
             this.tbox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbox1.Size = new System.Drawing.Size(260, 299);
+            this.tbox1.Size = new System.Drawing.Size(260, 466);
             this.tbox1.TabIndex = 239;
             this.tbox1.WordWrap = false;
-            // 
-            // lblMaxX
-            // 
-            this.lblMaxX.AutoSize = true;
-            this.lblMaxX.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.lblMaxX.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblMaxX.Location = new System.Drawing.Point(951, 18);
-            this.lblMaxX.Name = "lblMaxX";
-            this.lblMaxX.Size = new System.Drawing.Size(18, 19);
-            this.lblMaxX.TabIndex = 241;
-            this.lblMaxX.Text = "2";
-            // 
-            // lblMinX
-            // 
-            this.lblMinX.AutoSize = true;
-            this.lblMinX.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.lblMinX.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblMinX.Location = new System.Drawing.Point(878, 18);
-            this.lblMinX.Name = "lblMinX";
-            this.lblMinX.Size = new System.Drawing.Size(18, 19);
-            this.lblMinX.TabIndex = 240;
-            this.lblMinX.Text = "1";
-            // 
-            // lblMaxY
-            // 
-            this.lblMaxY.AutoSize = true;
-            this.lblMaxY.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.lblMaxY.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblMaxY.Location = new System.Drawing.Point(915, 0);
-            this.lblMaxY.Name = "lblMaxY";
-            this.lblMaxY.Size = new System.Drawing.Size(18, 19);
-            this.lblMaxY.TabIndex = 245;
-            this.lblMaxY.Text = "2";
-            // 
-            // lblMinY
-            // 
-            this.lblMinY.AutoSize = true;
-            this.lblMinY.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.lblMinY.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblMinY.Location = new System.Drawing.Point(915, 38);
-            this.lblMinY.Name = "lblMinY";
-            this.lblMinY.Size = new System.Drawing.Size(18, 19);
-            this.lblMinY.TabIndex = 244;
-            this.lblMinY.Text = "1";
-            // 
-            // btnMaze
-            // 
-            this.btnMaze.Location = new System.Drawing.Point(980, 123);
-            this.btnMaze.Name = "btnMaze";
-            this.btnMaze.Size = new System.Drawing.Size(75, 56);
-            this.btnMaze.TabIndex = 246;
-            this.btnMaze.Text = "Maze";
-            this.btnMaze.UseVisualStyleBackColor = true;
-            this.btnMaze.Click += new System.EventHandler(this.btnMaze_Click);
             // 
             // FormSelf
             // 
@@ -243,11 +184,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 821);
             this.ControlBox = false;
-            this.Controls.Add(this.btnMaze);
-            this.Controls.Add(this.lblMaxY);
-            this.Controls.Add(this.lblMinY);
-            this.Controls.Add(this.lblMaxX);
-            this.Controls.Add(this.lblMinX);
             this.Controls.Add(this.tbox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblBuildLine);
@@ -285,10 +221,5 @@
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.Label lblBuildLine;
         private System.Windows.Forms.TextBox tbox1;
-        private System.Windows.Forms.Label lblMaxX;
-        private System.Windows.Forms.Label lblMinX;
-        private System.Windows.Forms.Label lblMaxY;
-        private System.Windows.Forms.Label lblMinY;
-        private System.Windows.Forms.Button btnMaze;
     }
 }

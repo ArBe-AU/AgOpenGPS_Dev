@@ -1257,23 +1257,6 @@ namespace AgOpenGPS
                     }
                 }
             }
-
-
-
-
-
-            //////////////////////////////////////////////////////////////////////////
-            rateMap.BuildRateMap();
-
-
-
-
-
-
-
-
-
-
         }//end of open file
 
         //creates the field file when starting new field
@@ -1805,10 +1788,8 @@ namespace AgOpenGPS
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            string myFileName;
-            myFileName = "CurrentPosition.kml";
 
-            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
+            using (StreamWriter writer = new StreamWriter(dirField + "CurrentPosition.kml"))
             {
 
                 writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");

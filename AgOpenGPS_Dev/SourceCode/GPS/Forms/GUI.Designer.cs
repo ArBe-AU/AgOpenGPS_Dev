@@ -218,13 +218,13 @@ namespace AgOpenGPS
         {
             if (tabControl1.Visible)
             {
-                btnRightYouTurn.Left = (Width - 340 - 100) / 2 + 470;
-                btnLeftYouTurn.Left = (Width - 340 - 100) / 2 + 125;
+                btnRightYouTurn.Left = (Width - 440) / 2 + 475;
+                btnLeftYouTurn.Left = (Width - 440) / 2 + 115;
             }
             else
             {
-                btnRightYouTurn.Left = (Width-240-100) / 2 + 350;
-                btnLeftYouTurn.Left = (Width-240-100) / 2 + 20;
+                btnRightYouTurn.Left = (Width-340) / 2 + 362;
+                btnLeftYouTurn.Left = (Width-340) / 2 + 10;
             }
 
             int top = 0;
@@ -248,8 +248,8 @@ namespace AgOpenGPS
             btnSection8Man.Top = Height - top;
 
             int first2Thirds;
-            if (tabControl1.Visible) first2Thirds = (Width - 340-195) / 2 + 385;
-            else first2Thirds = (Width-200-195) / 2 + 260;
+            if (tabControl1.Visible) first2Thirds = (Width - 535) / 2 + 385;
+            else first2Thirds = (Width-395) / 2 + 260;
 
             int even = 60;
             int offset = 7;
@@ -1094,6 +1094,7 @@ namespace AgOpenGPS
                 if (!self.StartSelfDriving())
                 {
                     //Cancel the self - something went seriously wrong
+                    TimedMessageBox(1500, "Unable to create path", "Is Start too close to boundary?");
                     self.StopSelfDriving();
                 }
                 else
@@ -3106,8 +3107,24 @@ namespace AgOpenGPS
             fd.distanceUser = 0;
             fd.workedAreaTotalUser = 0;
         }
-        private void toolstripHeadland_Click(object sender, EventArgs e)
+        private void toolstripVR_Click(object sender, EventArgs e)
         {
+            if (!isJobStarted)
+            {
+                TimedMessageBox(1000, "No Field Open", "Please Start a Field");
+                return;
+            }
+
+            using (var form = new FormVRate(this))
+            {
+                var result = form.ShowDialog();
+                //if (result == DialogResult.OK)
+                //{
+                //    Form form2 = new FormBoundaryPlayer(this);
+                //    form2.Show();
+                //}
+            }
+
             //if (bnd.bndArr[0].isSet && (ABLine.isABLineSet | curve.isCurveSet))
             //{
             //    //field too small
@@ -3122,7 +3139,7 @@ namespace AgOpenGPS
             //    //}
             //}
             //else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
-            TimedMessageBox(1500, "Headlands not Implemented", "Some time soon they will be functional");
+            //TimedMessageBox(1500, "Headlands not Implemented", "Some time soon they will be functional");
         }
         private void toolstripBoundary_Click(object sender, EventArgs e)
         {
@@ -3176,8 +3193,8 @@ namespace AgOpenGPS
             //if (!sp.IsOpen)
             {
                 if (isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000)) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
-                //else if (genPath.isDrivingGenLine | genPath.isDrivingHome) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
                 else if (recPath.isDrivingRecordedPath) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
+                else if (self.isSelfDriving) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
                 else sim.DoSimTick(sim.steerAngleScrollBar);
             }
         }
@@ -3252,7 +3269,8 @@ namespace AgOpenGPS
                 else return "-";
             }
         }
-        public string PureSteerAngle { get { return ((double)(guidanceLineSteerAngle) * 0.01).ToString("N1"); } }
+        public string PureSteerAngle { get { return ((double)(guidanceLineSteerAngle) * 0.01).ToString("N1") + "\u00B0"; } }
+        public string ActualSteerAngle { get { return ((double)(actualSteerAngleDisp) * 0.01).ToString("N1") + "\u00B0"; } }
 
         public string FixHeading { get { return Math.Round(fixHeading, 4).ToString(); } }
 
@@ -3416,7 +3434,7 @@ namespace AgOpenGPS
                     IncrementNTRIPWatchDog();
                 }
 
-                double vr = 0;
+                //double vr = 0;
                 int cnt = rateMap.mapList.Count;
                 if (cnt > 5)
                 {
@@ -3425,16 +3443,18 @@ namespace AgOpenGPS
                         if (Math.Abs(rateMap.mapList[i].easting - pn.fix.easting) < 9)
                         {
                             if (Math.Abs(rateMap.mapList[i].northing - pn.fix.northing) < 9)
-                            {                                
-                                lblVR.Text = rateMap.mapList[i].heading.ToString();
-                                vr = rateMap.mapList[i].heading;
+                            {
+                                lblVRRed.Text = rateMap.mapList[i].red.ToString();
+                                lblVRGrn.Text = rateMap.mapList[i].grn.ToString();
+                                lblVRBlu.Text = rateMap.mapList[i].blu.ToString();
+                                //vr = rateMap.mapList[i].heading;
                                 break;
                             }
                         }
                     }
 
-                    rcd.rateLeft = vr / 3;
-                    lblRateSetpointLeft.Text = rcd.rateLeft.ToString("N1");
+                    //rcd.rateLeft = vr / 3;
+                    //lblRateSetpointLeft.Text = rcd.rateLeft.ToString("N1");
                 }
 
                 //Have we connection
@@ -3623,6 +3643,18 @@ namespace AgOpenGPS
                     txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]
                                             + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle + ", " + mc.machineControlData[mc.cnYouTurn];
 
+                    if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
+                    {
+                        lblSetpointSteerAngle2.Text = "Off  ";
+                        //lblDiffSteerAngle2.Text = "Off";
+                    }
+                    else
+                    {
+                        lblSetpointSteerAngle2.Text = PureSteerAngle;
+                        //lblDiffSteerAngle2.Text = DiffSteerAngle;
+                    }
+
+                    lblActualSteerAngle2.Text = ActualSteerAngle;
 
                     //up in the menu a few pieces of info
                     if (isJobStarted)
