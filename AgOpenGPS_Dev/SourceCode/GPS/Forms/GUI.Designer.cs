@@ -182,7 +182,7 @@ namespace AgOpenGPS
                 btnZoomOut.Left = 245;
                 btnZoomExtents.Left = 245;
                 cboxpRowWidth.Left = 245;
-                txtDistanceOffABLine.Left = (Width - 240-100)/2 + 140;
+                txtDistanceOffABLine.Left = (Width - 245-100)/2 + 185;
                 panelBatman.Visible = true;
                 tabControl1.Visible = false;
                 Properties.Settings.Default.setDisplay_isLargePanel = false;
@@ -201,7 +201,7 @@ namespace AgOpenGPS
                 btnZoomOut.Left = 345;
                 btnZoomExtents.Left = 345;
                 cboxpRowWidth.Left = 345;
-                txtDistanceOffABLine.Left = (Width - 340 - 100)/2 + 300;
+                txtDistanceOffABLine.Left = (Width - 345 - 100)/2 + 287;
                 txtDistanceOffABLine.Top = -1;
                 tabControl1.SelectedIndex = 3;
                 panelBatman.Visible = false;
@@ -3566,20 +3566,6 @@ namespace AgOpenGPS
                     txtBoxSendArduino.Text = mc.relayRateData[2] + "," + mc.relayRateData[3] + "," + mc.relayRateData[4] //relay and speed x 4
                         + "," + mc.relayRateData[5] + "," + mc.relayRateData[6] + "," + mc.relayRateData[7] + "," + mc.relayRateData[8] //setpoint hi lo left and right
                     + "," + mc.relayRateData[9];
-
-                    if (bnd.bndArr[0].isSet)
-                    {
-                        if (yt.isYouTurnRight)
-                        {
-                            if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotFt;
-                            else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = "Cancel"; }
-                        }
-                        else
-                        {
-                            if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotFt;
-                            else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = "Cancel"; }
-                        }
-                    }
                 }
 
                 //statusbar flash red undefined headland
@@ -3679,19 +3665,40 @@ namespace AgOpenGPS
                     lblpGPSHeading.Text = GPSHeading;
                 }
 
-                if (bnd.bndArr[0].isSet)
+                if (isMetric)
                 {
-                    if (yt.isYouTurnRight)
+                    if (bnd.bndArr[0].isSet)
                     {
-                        if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotM;
-                        else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
-                    }
-                    else
-                    {
-                        if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotM;
-                        else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
+                        if (yt.isYouTurnRight)
+                        {
+                            if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotM;
+                            else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
+                        }
+                        else
+                        {
+                            if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotM;
+                            else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
+                        }
                     }
                 }
+                else
+                {
+
+                    if (bnd.bndArr[0].isSet)
+                    {
+                        if (yt.isYouTurnRight)
+                        {
+                            if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotFt;
+                            else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
+                        }
+                        else
+                        {
+                            if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotFt;
+                            else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
+                        }
+                    }
+                }
+
             } //end every 1/2 second
             /////////////////////////////////////////////////////////   333333333333333  ////////////////////////////////////////
 
@@ -3709,7 +3716,6 @@ namespace AgOpenGPS
                         lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
                         lblpAreaWorked.Text = fd.WorkedHectares;
                         lblpFieldAreaRemain.Text = fd.WorkedAreaRemainHectares;
-                        lblAreaRate.Text = fd.WorkRateHectares;
                     }
                     else //imperial
                     {
@@ -3717,7 +3723,6 @@ namespace AgOpenGPS
                         lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
                         lblpAreaWorked.Text = fd.WorkedAcres;
                         lblpFieldAreaRemain.Text = fd.WorkedAreaRemainAcres;
-                        lblAreaRate.Text = fd.WorkRateAcres;
                     }
 
                     //both
@@ -3725,7 +3730,7 @@ namespace AgOpenGPS
                     lblpTimeToFinish.Text = fd.TimeTillFinished;
                 }
 
-
+                //The tabbed is selected and the info tab
                 if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
                 {
                     if (isMetric)
@@ -3753,11 +3758,7 @@ namespace AgOpenGPS
                     lblSats.Text = SatsTracked;
                     lblZone.Text = pn.zone.ToString();
                     tboxSentence.Text = recvSentenceSettings;
-
                 }
-
-
-
 
                 //the main formgps window
                 if (isMetric)  //metric or imperial
@@ -3767,6 +3768,9 @@ namespace AgOpenGPS
 
                     //status strip values
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
+
+                    //Hectares per hour
+                    lblAreaRate.Text = fd.WorkRateHectares;
                 }
                 else  //Imperial Measurements
                 {
@@ -3774,6 +3778,9 @@ namespace AgOpenGPS
 
                     //status strip values
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
+
+                    //Acres per hour
+                    lblAreaRate.Text = fd.WorkRateAcres;
                 }
 
                 //not Metric/Standard units sensitive

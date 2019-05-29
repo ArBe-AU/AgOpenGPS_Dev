@@ -79,18 +79,18 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripBatman = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripBtnCamera = new System.Windows.Forms.ToolStripDropDownButton();
             this.CameraNorthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CameraFollowingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CameraTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripBatman = new System.Windows.Forms.ToolStripDropDownButton();
-            this.lblAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.goPathMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.pausePathMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.recordPathMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripBtnDropDownSpecialFunctions = new System.Windows.Forms.ToolStripDropDownButton();
@@ -685,6 +685,15 @@
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             // 
+            // toolStripBatman
+            // 
+            resources.ApplyResources(this.toolStripBatman, "toolStripBatman");
+            this.toolStripBatman.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBatman.Image = global::AgOpenGPS.Properties.Resources.Batman48;
+            this.toolStripBatman.Name = "toolStripBatman";
+            this.toolStripBatman.ShowDropDownArrow = false;
+            this.toolStripBatman.Click += new System.EventHandler(this.toolStripBatman_Click);
+            // 
             // toolStripBtnCamera
             // 
             resources.ApplyResources(this.toolStripBtnCamera, "toolStripBtnCamera");
@@ -717,21 +726,6 @@
             this.CameraTopToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Camera2D64;
             this.CameraTopToolStripMenuItem.Name = "CameraTopToolStripMenuItem";
             this.CameraTopToolStripMenuItem.Click += new System.EventHandler(this.CameraTopToolStripMenuItem_Click);
-            // 
-            // toolStripBatman
-            // 
-            resources.ApplyResources(this.toolStripBatman, "toolStripBatman");
-            this.toolStripBatman.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBatman.Image = global::AgOpenGPS.Properties.Resources.Batman48;
-            this.toolStripBatman.Name = "toolStripBatman";
-            this.toolStripBatman.ShowDropDownArrow = false;
-            this.toolStripBatman.Click += new System.EventHandler(this.toolStripBatman_Click);
-            // 
-            // lblAreaRate
-            // 
-            resources.ApplyResources(this.lblAreaRate, "lblAreaRate");
-            this.lblAreaRate.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
-            this.lblAreaRate.Name = "lblAreaRate";
             // 
             // toolStripDropDownButton1
             // 
@@ -780,6 +774,12 @@
             resources.ApplyResources(this.deletePathMenu, "deletePathMenu");
             this.deletePathMenu.Name = "deletePathMenu";
             this.deletePathMenu.Click += new System.EventHandler(this.deletePathMenu_Click);
+            // 
+            // lblAreaRate
+            // 
+            resources.ApplyResources(this.lblAreaRate, "lblAreaRate");
+            this.lblAreaRate.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
+            this.lblAreaRate.Name = "lblAreaRate";
             // 
             // stripEqWidth
             // 
@@ -2748,7 +2748,6 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Button btnFlagsGoogleEarth;
-        private System.Windows.Forms.Button btnContour;
         private System.Windows.Forms.Panel panelSimControls;
         private System.Windows.Forms.Button btnZoomExtents;
         private System.Windows.Forms.Label lblHz;
@@ -2801,6 +2800,7 @@
         private System.Windows.Forms.Label lblSetpointSteerAngle2;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Button btnContour;
     }
 }
 

@@ -215,7 +215,7 @@ namespace AgOpenGPS
 
         private void GetDubinsPath(vec3 goal)
         {
-            CDubins.turningRadius = mf.vehicle.minTurningRadius * 2.0;
+            CDubins.turningRadius = mf.vehicle.minTurningRadius * 1.0;
             CDubins dubPath = new CDubins();
 
             // current psition

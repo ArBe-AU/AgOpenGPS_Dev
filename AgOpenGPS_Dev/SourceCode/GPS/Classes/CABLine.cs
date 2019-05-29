@@ -92,11 +92,8 @@ namespace AgOpenGPS
             currentABLineP2 = new vec2(0.0, 1.0);
 
             abHeading = 0.0;
-
             passNumber = 0.0;
-
             howManyPathsAway = 0.0;
-
             isABLineSet = false;
         }
 

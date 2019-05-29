@@ -86,16 +86,6 @@ namespace AgOpenGPS
 
         public List<vec3> mazeList = new List<vec3>();
 
-        //the dubins path to get there
-        //public List<CRecPathPt> shuttleDubinsList = new List<CRecPathPt>();
-
-        //public int dubListCount;
-
-
-        ////list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
-        //public List<vec3> shortestDubinsList = new List<vec3>();
-
-
         public bool isBtnFollowOn, isEndOfABLines;
         public bool isPausedSelfDriving, isSelfDriving, isDrivingToABStart, isDrivingAB, isDrivingBackHome;
 
@@ -183,7 +173,8 @@ namespace AgOpenGPS
                     isDrivingAB = false;
                     isPausedSelfDriving = false;
 
-                    CDubins.turningRadius = mf.vehicle.minTurningRadius * 1.5;
+                    //make larger as 
+                    CDubins.turningRadius = mf.vehicle.minTurningRadius;
 
                     //get the dubins for approach to recorded path
                     GetDubinsPath(homePos);
@@ -219,7 +210,7 @@ namespace AgOpenGPS
 
         public bool StartSelfDriving()
         {
-            CDubins.turningRadius = mf.vehicle.minTurningRadius * 1.5;
+            CDubins.turningRadius = mf.vehicle.minTurningRadius;
 
             //calculate the AB Heading
             double startPointHeading = Math.Atan2(mf.ABLine.refPoint2.easting - mf.ABLine.refPoint1.easting,
@@ -246,6 +237,12 @@ namespace AgOpenGPS
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
             if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
             mf.yt.ResetYouTurn();
+
+            //turn off contour
+            if (mf.ct.isContourBtnOn) mf.btnContour.PerformClick();
+
+            //turn off curve
+            if (mf.curve.isCurveBtnOn) mf.btnCurve.PerformClick();
 
             //technically all good if we get here so set all the flags
             isDrivingToABStart = true;
@@ -473,7 +470,7 @@ namespace AgOpenGPS
             ////no longer needed
             //dubinsList?.Clear();
 
-            CDubins.turningRadius = mf.vehicle.minTurningRadius * 2.0;
+            CDubins.turningRadius = mf.vehicle.minTurningRadius * 1.0;
             CDubins dubPath = new CDubins();
 
             // current psition
