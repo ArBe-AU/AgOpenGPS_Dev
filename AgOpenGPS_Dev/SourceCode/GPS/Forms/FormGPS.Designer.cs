@@ -174,9 +174,9 @@
             this.btnGPSData = new System.Windows.Forms.Button();
             this.btnPerimeter = new System.Windows.Forms.Button();
             this.DataPage = new System.Windows.Forms.TabPage();
+            this.btnStanley = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblActualSteerAngle2 = new System.Windows.Forms.Label();
             this.lblSetpointSteerAngle2 = new System.Windows.Forms.Label();
             this.btnSmallRight2 = new System.Windows.Forms.Button();
@@ -1444,9 +1444,9 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DataPage.Controls.Add(this.btnStanley);
             this.DataPage.Controls.Add(this.label23);
             this.DataPage.Controls.Add(this.label29);
-            this.DataPage.Controls.Add(this.label3);
             this.DataPage.Controls.Add(this.lblActualSteerAngle2);
             this.DataPage.Controls.Add(this.lblSetpointSteerAngle2);
             this.DataPage.Controls.Add(this.btnSmallRight2);
@@ -1493,6 +1493,16 @@
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
             // 
+            // btnStanley
+            // 
+            this.btnStanley.BackColor = System.Drawing.Color.Lavender;
+            this.btnStanley.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnStanley.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btnStanley, "btnStanley");
+            this.btnStanley.Name = "btnStanley";
+            this.btnStanley.UseVisualStyleBackColor = false;
+            this.btnStanley.Click += new System.EventHandler(this.btnStanley_Click);
+            // 
             // label23
             // 
             resources.ApplyResources(this.label23, "label23");
@@ -1502,11 +1512,6 @@
             // 
             resources.ApplyResources(this.label29, "label29");
             this.label29.Name = "label29";
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
             // 
             // lblActualSteerAngle2
             // 
@@ -1522,7 +1527,6 @@
             // 
             resources.ApplyResources(this.btnSmallRight2, "btnSmallRight2");
             this.btnSmallRight2.BackColor = System.Drawing.Color.Lavender;
-            this.btnSmallRight2.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnSmallRight2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnSmallRight2.FlatAppearance.BorderSize = 2;
             this.btnSmallRight2.Name = "btnSmallRight2";
@@ -1533,7 +1537,6 @@
             // 
             resources.ApplyResources(this.btnSmallLeft2, "btnSmallLeft2");
             this.btnSmallLeft2.BackColor = System.Drawing.Color.Lavender;
-            this.btnSmallLeft2.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnSmallLeft2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnSmallLeft2.FlatAppearance.BorderSize = 2;
             this.btnSmallLeft2.Name = "btnSmallLeft2";
@@ -1544,7 +1547,6 @@
             // 
             resources.ApplyResources(this.btnBigRight2, "btnBigRight2");
             this.btnBigRight2.BackColor = System.Drawing.Color.Lavender;
-            this.btnBigRight2.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnBigRight2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnBigRight2.FlatAppearance.BorderSize = 2;
             this.btnBigRight2.Name = "btnBigRight2";
@@ -1555,7 +1557,6 @@
             // 
             resources.ApplyResources(this.btnBigLeft2, "btnBigLeft2");
             this.btnBigLeft2.BackColor = System.Drawing.Color.Lavender;
-            this.btnBigLeft2.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnBigLeft2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnBigLeft2.FlatAppearance.BorderSize = 2;
             this.btnBigLeft2.Name = "btnBigLeft2";
@@ -2799,8 +2800,8 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label lblSetpointSteerAngle2;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label3;
         public System.Windows.Forms.Button btnContour;
+        private System.Windows.Forms.Button btnStanley;
     }
 }
 

@@ -808,6 +808,40 @@ namespace AgOpenGPS
             ct.BuildBoundaryContours();
         }
 
+        private void btnStanley_Click(object sender, EventArgs e)
+        {
+            isStanleyUsed = !isStanleyUsed;
+            if (isStanleyUsed) btnStanley.Text = "StanLee";
+            else btnStanley.Text = "Pure P";
+            Properties.Vehicle.Default.setVehicle_isStanleyUsed = isStanleyUsed;
+            Properties.Vehicle.Default.Save();
+        }
+
+        private void btnStartStopNtrip_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.setNTRIP_isOn)
+            {
+                if (isNTRIP_RequiredOn)
+                {
+                    ShutDownNTRIP();
+                    btnStartStopNtrip.Text = "Start";
+                    lblWatch.Text = "Stopped";
+                    lblNTRIPSeconds.Text = "Offline ";
+                    isNTRIP_RequiredOn = false;
+                }
+                else
+                {
+                    isNTRIP_RequiredOn = true;
+                    btnStartStopNtrip.Text = "Stop";
+                    lblWatch.Text = "Waiting";
+                }
+            }
+            else
+            {
+                TimedMessageBox(2000, "Turn ON Ntrip Client", " NTRIP Client Not Set Up");
+            }
+        }
+
         //rate control
         private void btnDualRate_Click(object sender, EventArgs e)
         {
@@ -1147,6 +1181,8 @@ namespace AgOpenGPS
 
                     //change image to reflect on off
                     btnABLine.Image = Properties.Resources.ABLineOff;
+                    ABLine.isBtnABLineOn = false;
+
                     ABLine.isABLineBeingSet = false;
                     DisableYouTurnButtons();
                     if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
@@ -1283,6 +1319,8 @@ namespace AgOpenGPS
 
                     //change image to reflect on off
                     btnABLine.Image = Properties.Resources.ABLineOff;
+                    ABLine.isBtnABLineOn = false;
+
                     ABLine.isABLineBeingSet = false;
                     DisableYouTurnButtons();
                     if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
@@ -1390,6 +1428,8 @@ namespace AgOpenGPS
 
                     //change image to reflect on off
                     btnABLine.Image = Properties.Resources.ABLineOff;
+                    ABLine.isBtnABLineOn = false;
+
                     ABLine.isABLineBeingSet = false;
 
                     DisableYouTurnButtons();
@@ -1404,6 +1444,8 @@ namespace AgOpenGPS
                 {
                     //change image to reflect on off
                     btnABLine.Image = Properties.Resources.ABLineOn;
+                    ABLine.isBtnABLineOn = true;
+
                     ABLine.isABLineBeingSet = false;
                     EnableYouTurnButtons();
                     btnCurve.Enabled = false;
@@ -1455,6 +1497,8 @@ namespace AgOpenGPS
 
                 //change image to reflect on off
                 btnABLine.Image = Properties.Resources.ABLineOff;
+                ABLine.isBtnABLineOn = false;
+
                 ABLine.isABLineBeingSet = false;
                 //btnContour.Enabled = false;
                 btnABLine.Enabled = false;
@@ -2225,10 +2269,6 @@ namespace AgOpenGPS
                 yt.isYouTurnBtnOn = true;
                 yt.isTurnCreationTooClose = false;
                 yt.isTurnCreationNotCrossingError = false;
-                yt.dew2Index = 0;
-                //yt.isDew2Set = false;
-                //yt.isDew4Set = false;
-                yt.dew4Index = 0;
                 yt.ResetYouTurn();
                 //mc.autoSteerData[mc.sdX] = 0;
                 mc.machineControlData[mc.cnYouTurn] = 0;
@@ -2240,10 +2280,6 @@ namespace AgOpenGPS
                 yt.isYouTurnBtnOn = false;
                 yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
                 btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-                yt.dew2Index = 0;
-                //yt.isDew2Set = false;
-                //yt.isDew4Set = false;
-                yt.dew4Index = 0;
                 yt.ResetYouTurn();
 
                 //new direction so reset where to put turn diagnostic
@@ -3412,11 +3448,55 @@ namespace AgOpenGPS
                 oneSecondCounter = 0;
                 oneSecond++;
             }
-
             if (oneHalfSecondCounter++ > 10)
             {
                 oneHalfSecondCounter = 0;
                 oneHalfSecond++;
+            }
+            if (oneFifthSecondCounter++ > 1)
+            {
+                oneFifthSecondCounter = 0;
+                oneFifthSecond++;
+            }
+
+            //every fifth second update  ///////////////////////////   FIFTH Fifth ////////////////////////////
+            if (displayUpdateOneFifthCounter != oneFifthSecond)
+            {
+                //reset the counter
+                displayUpdateOneFifthCounter = oneFifthSecond;
+
+                lblHeading.Text = Heading;
+
+                if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
+                {
+
+                    if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
+                    {
+                        lblSetpointSteerAngle2.Text = "Off  ";
+                        //lblDiffSteerAngle2.Text = "Off";
+                    }
+                    else
+                    {
+                        lblSetpointSteerAngle2.Text = PureSteerAngle;
+                        //lblDiffSteerAngle2.Text = DiffSteerAngle;
+                    }
+
+                    lblActualSteerAngle2.Text = ActualSteerAngle;
+                    {
+
+                        lblRoll.Text = RollInDegrees;
+                        lblYawHeading.Text = GyroInDegrees;
+                        lblGPSHeading.Text = GPSHeading;
+                        lblHeading2.Text = lblHeading.Text;
+                    }
+                }
+
+                if (panelBatman.Visible)
+                {
+                    lblpRoll.Text = RollInDegrees;
+                    lblpYawHeading.Text = GyroInDegrees;
+                    lblpGPSHeading.Text = GPSHeading;
+                }
             }
 
             //every second update all status ///////////////////////////   1 1 1 1 1 1 ////////////////////////////
@@ -3598,8 +3678,6 @@ namespace AgOpenGPS
 
                 //not Metric/Standard units sensitive
                 lblFixQuality.Text = FixQuality;
-                lblHeading.Text = Heading;
-                lblHeading2.Text = lblHeading.Text;
                 lblLidarDistance.Text = (mc.lidarDistance * 0.01).ToString();
                 lblHz.Text = NMEAHz + "Hz " + (int)(frameTime);
 
@@ -3612,16 +3690,12 @@ namespace AgOpenGPS
                 //reset the counter
                 displayUpdateHalfSecondCounter = oneHalfSecond;
 
-
                 if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
                 {
                     //both
                     lblLatitude.Text = Latitude;
                     lblLongitude.Text = Longitude;
 
-                    lblRoll.Text = RollInDegrees;
-                    lblYawHeading.Text = GyroInDegrees;
-                    lblGPSHeading.Text = GPSHeading;
                     lblMachineControl.Text = Convert.ToString(mc.machineControlData[mc.cnPedalControl], 2).PadLeft(8, '0');
                     lblLookAhead.Text = lookaheadActual.ToString("N1") + " m";
 
@@ -3629,18 +3703,6 @@ namespace AgOpenGPS
                     txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]
                                             + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle + ", " + mc.machineControlData[mc.cnYouTurn];
 
-                    if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
-                    {
-                        lblSetpointSteerAngle2.Text = "Off  ";
-                        //lblDiffSteerAngle2.Text = "Off";
-                    }
-                    else
-                    {
-                        lblSetpointSteerAngle2.Text = PureSteerAngle;
-                        //lblDiffSteerAngle2.Text = DiffSteerAngle;
-                    }
-
-                    lblActualSteerAngle2.Text = ActualSteerAngle;
 
                     //up in the menu a few pieces of info
                     if (isJobStarted)
@@ -3656,13 +3718,6 @@ namespace AgOpenGPS
 
                     tboxSentence.Text = recvSentenceSettings;
 
-                }
-
-                if (panelBatman.Visible)
-                {
-                    lblpRoll.Text = RollInDegrees;
-                    lblpYawHeading.Text = GyroInDegrees;
-                    lblpGPSHeading.Text = GPSHeading;
                 }
 
                 if (isMetric)

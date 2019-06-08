@@ -174,29 +174,9 @@ namespace AgOpenGPS
                 gf.DrawGeoFenceLines();
                 turn.DrawClosestPoint();
 
-                //if (bnd.bndArr[0].isSet) mazeGrid.DrawArr();
-                //if (bnd.bndArr[0].isSet) rateMap.DrawArr();
-                //if (bnd.bndArr[0].isSet) rateMap.DrawBob();
-
-                //GL.PointSize(4.0f);
-                //GL.Begin(PrimitiveType.Points);
-                //GL.Color3(0.915f, 0.920f, 0.150f);
-                //if (recPath.mazeList != null)
-                //{
-                //    int ptCount = recPath.mazeList.Count;
-                //    for (int h = 0; h < ptCount; h++)
-                //    {
-                //        GL.Vertex3(recPath.mazeList[h].easting, recPath.mazeList[h].northing, 0);
-
-                //    }
-                //    GL.End();
-                //}
-
-
                 //draw generated path
                 //genPath.DrawGeneratedPath();
                 self.DrawDubins();
-
 
                 //draw the flags if there are some
                 int flagCnt = flagPts.Count;

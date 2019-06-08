@@ -58,7 +58,7 @@ namespace AgOpenGPS
 
         //autosteer values
         public double goalPointLookAheadSeconds, goalPointLookAheadMinimumDistance, goalPointDistanceMultiplier, goalPointLookAheadUturnMult;
-
+        public double stanleyGain, stanleyHeadingErrorGain;
         public double minLookAheadDistance = 2.0;
         public double maxSteerAngle;
         public double maxAngularVelocity;
@@ -101,6 +101,9 @@ namespace AgOpenGPS
             goalPointLookAheadMinimumDistance = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
             goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
             goalPointLookAheadUturnMult = Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult;
+
+            stanleyGain = Properties.Vehicle.Default.setVehicle_stanleyGain;
+            stanleyHeadingErrorGain = Properties.Vehicle.Default.setVehicle_stanleyHeadingErrorGain;
 
             maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
             maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
@@ -308,9 +311,9 @@ namespace AgOpenGPS
             GL.Color3(0.9, 0.95, 0.10);
             GL.Begin(PrimitiveType.LineStrip);
             {
-                GL.Vertex3(0.8,  wheelbase + 7, 0.0);
-                GL.Vertex3(0, wheelbase + 11, 0.0);
-                GL.Vertex3(-0.8, wheelbase + 7, 0.0);
+                GL.Vertex3(0.8,  wheelbase + 6, 0.0);
+                GL.Vertex3(0, wheelbase + 8, 0.0);
+                GL.Vertex3(-0.8, wheelbase + 6, 0.0);
             }
             GL.End();
 
