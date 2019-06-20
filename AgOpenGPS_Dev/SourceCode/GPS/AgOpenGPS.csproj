@@ -304,6 +304,12 @@
     <Compile Include="Forms\FormVRate.Designer.cs">
       <DependentUpon>FormVRate.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTreePlant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTreePlant.Designer.cs">
+      <DependentUpon>FormTreePlant.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="gStr.de.Designer.cs">
       <DependentUpon>gStr.de.resx</DependentUpon>
@@ -652,6 +658,9 @@
     <EmbeddedResource Include="Forms\FormVRate.resx">
       <DependentUpon>FormVRate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormTreePlant.resx">
+      <DependentUpon>FormTreePlant.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="gStr.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.de.Designer.cs</LastGenOutput>
@@ -866,6 +875,7 @@
     <None Include="btnImages\HideContour.png" />
     <None Include="btnImages\RecPath.png" />
     <None Include="btnImages\LonLat.gif" />
+    <None Include="btnImages\tree.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

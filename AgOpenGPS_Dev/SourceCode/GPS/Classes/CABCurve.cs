@@ -564,6 +564,7 @@ namespace AgOpenGPS
 
                 mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
                 mf.guidanceLineSteerAngle = (Int16)(steerAngleCu * 100);
+                
 
                 if (mf.yt.isYouTurnTriggered)
                 {
@@ -730,9 +731,8 @@ namespace AgOpenGPS
                 //GL.Vertex3(boxC.easting, boxC.northing, 0);
                 //GL.Vertex3(boxD.easting, boxD.northing, 0);
                 //GL.End();
-            }
-            //normal. Smoothing window is not open.
-            else
+            }            
+            else //normal. Smoothing window is not open.
             {
                 ptCount = curList.Count;
                 if (ptCount > 0 && isCurveSet)
@@ -793,7 +793,6 @@ namespace AgOpenGPS
                             }
                             GL.End();
                         }
-
                         GL.Color3(0.95f, 0.05f, 0.05f);
                     }
                 }

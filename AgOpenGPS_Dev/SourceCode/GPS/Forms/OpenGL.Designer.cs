@@ -375,6 +375,8 @@ namespace AgOpenGPS
 
                     //return back
                     GL.PopMatrix();
+                    GL.LineWidth(1);
+
                 }
 
 

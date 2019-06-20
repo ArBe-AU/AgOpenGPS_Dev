@@ -43,6 +43,9 @@ namespace AgOpenGPS
 
         public void AutoSteerDataOutToPort()
         {
+            //load the uturn byte with the accumulated spacing
+            if (vehicle.treeSpacing != 0) mc.autoSteerData[mc.sdYouTurnByte] = (byte)treeSpacingCounter;
+
             //send autosteer since it never is logic controlled
             SendUDPMessage(mc.autoSteerData);
 
@@ -116,6 +119,7 @@ namespace AgOpenGPS
         public void AutoSteerSettingsOutToPort()
         {
             //send out the settings
+
             SendUDPMessage(mc.autoSteerSettings);
 
             //Tell Arduino autoSteer settings

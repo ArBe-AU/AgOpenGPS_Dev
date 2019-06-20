@@ -1123,6 +1123,15 @@
   <data name="toolStripBtnSmoothABCurve.Text" xml:space="preserve">
     <value>Smooth AB Curve</value>
   </data>
+  <data name="treePlanterToolStripMenuItem.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="treePlanterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>434, 70</value>
+  </data>
+  <data name="treePlanterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tree Planter</value>
+  </data>
   <data name="toolStripBtnDropDownSpecialFunctions.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 18pt</value>
   </data>
@@ -3462,7 +3471,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAAbABHwGwAR8BQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAAegBHwHoAR8BQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -5580,6 +5589,78 @@
   <data name="&gt;&gt;lblVRBlu.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="lblVRGrn.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblVRGrn.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 27.75pt, style=Bold</value>
+  </data>
+  <data name="lblVRGrn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblVRGrn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>231, 122</value>
+  </data>
+  <data name="lblVRGrn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 45</value>
+  </data>
+  <data name="lblVRGrn.TabIndex" type="System.Int32, mscorlib">
+    <value>284</value>
+  </data>
+  <data name="lblVRGrn.Text" xml:space="preserve">
+    <value>VR</value>
+  </data>
+  <data name="lblVRGrn.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;lblVRGrn.Name" xml:space="preserve">
+    <value>lblVRGrn</value>
+  </data>
+  <data name="&gt;&gt;lblVRGrn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblVRGrn.Parent" xml:space="preserve">
+    <value>configPage1</value>
+  </data>
+  <data name="&gt;&gt;lblVRGrn.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblVRRed.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblVRRed.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 27.75pt, style=Bold</value>
+  </data>
+  <data name="lblVRRed.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblVRRed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>231, 61</value>
+  </data>
+  <data name="lblVRRed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 45</value>
+  </data>
+  <data name="lblVRRed.TabIndex" type="System.Int32, mscorlib">
+    <value>283</value>
+  </data>
+  <data name="lblVRRed.Text" xml:space="preserve">
+    <value>VR</value>
+  </data>
+  <data name="lblVRRed.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;lblVRRed.Name" xml:space="preserve">
+    <value>lblVRRed</value>
+  </data>
+  <data name="&gt;&gt;lblVRRed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblVRRed.Parent" xml:space="preserve">
+    <value>configPage1</value>
+  </data>
+  <data name="&gt;&gt;lblVRRed.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="btnFixOffset.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 14.25pt</value>
   </data>
@@ -5744,78 +5825,6 @@
     <value>configPage1</value>
   </data>
   <data name="&gt;&gt;btnFixOffset.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="lblVRGrn.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblVRGrn.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 27.75pt, style=Bold</value>
-  </data>
-  <data name="lblVRGrn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblVRGrn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 122</value>
-  </data>
-  <data name="lblVRGrn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 45</value>
-  </data>
-  <data name="lblVRGrn.TabIndex" type="System.Int32, mscorlib">
-    <value>284</value>
-  </data>
-  <data name="lblVRGrn.Text" xml:space="preserve">
-    <value>VR</value>
-  </data>
-  <data name="lblVRGrn.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopRight</value>
-  </data>
-  <data name="&gt;&gt;lblVRGrn.Name" xml:space="preserve">
-    <value>lblVRGrn</value>
-  </data>
-  <data name="&gt;&gt;lblVRGrn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblVRGrn.Parent" xml:space="preserve">
-    <value>configPage1</value>
-  </data>
-  <data name="&gt;&gt;lblVRGrn.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lblVRRed.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblVRRed.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 27.75pt, style=Bold</value>
-  </data>
-  <data name="lblVRRed.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblVRRed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 61</value>
-  </data>
-  <data name="lblVRRed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 45</value>
-  </data>
-  <data name="lblVRRed.TabIndex" type="System.Int32, mscorlib">
-    <value>283</value>
-  </data>
-  <data name="lblVRRed.Text" xml:space="preserve">
-    <value>VR</value>
-  </data>
-  <data name="lblVRRed.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopRight</value>
-  </data>
-  <data name="&gt;&gt;lblVRRed.Name" xml:space="preserve">
-    <value>lblVRRed</value>
-  </data>
-  <data name="&gt;&gt;lblVRRed.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblVRRed.Parent" xml:space="preserve">
-    <value>configPage1</value>
-  </data>
-  <data name="&gt;&gt;lblVRRed.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="btnFlagsGoogleEarth.Font" type="System.Drawing.Font, System.Drawing">
@@ -6905,6 +6914,9 @@
   </data>
   <data name="btnStanley.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt, style=Bold</value>
+  </data>
+  <data name="btnStanley.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnStanley.Location" type="System.Drawing.Point, System.Drawing">
     <value>227, 410</value>
@@ -8368,13 +8380,13 @@
     <value>True</value>
   </metadata>
   <data name="oglZoom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 3</value>
+    <value>3, 4</value>
   </data>
   <data name="oglZoom.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="oglZoom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 237</value>
+    <value>356, 346</value>
   </data>
   <data name="oglZoom.TabIndex" type="System.Int32, mscorlib">
     <value>182</value>
@@ -11300,7 +11312,7 @@
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
+    <value>127</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
@@ -11406,29 +11418,20 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>800, 740</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AgOpenGPS - Be So Good They Can't Ignore You</value>
   </data>
-  <data name="&gt;&gt;deleteFlagToolOpenGLContextMenu.Name" xml:space="preserve">
-    <value>deleteFlagToolOpenGLContextMenu</value>
-  </data>
-  <data name="&gt;&gt;deleteFlagToolOpenGLContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
     <value>toolStripSeparator5</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;googleEarthOpenGLContextMenu.Name" xml:space="preserve">
-    <value>googleEarthOpenGLContextMenu</value>
-  </data>
-  <data name="&gt;&gt;googleEarthOpenGLContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
     <value>fileToolStripMenuItem</value>
@@ -11682,72 +11685,6 @@
   <data name="&gt;&gt;tmrWatchdog.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripBatman.Name" xml:space="preserve">
-    <value>toolStripBatman</value>
-  </data>
-  <data name="&gt;&gt;toolStripBatman.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripBtnCamera.Name" xml:space="preserve">
-    <value>toolStripBtnCamera</value>
-  </data>
-  <data name="&gt;&gt;toolStripBtnCamera.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CameraNorthToolStripMenuItem.Name" xml:space="preserve">
-    <value>CameraNorthToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;CameraNorthToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CameraFollowingToolStripMenuItem.Name" xml:space="preserve">
-    <value>CameraFollowingToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;CameraFollowingToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CameraTopToolStripMenuItem.Name" xml:space="preserve">
-    <value>CameraTopToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;CameraTopToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripDropDownButton1.Name" xml:space="preserve">
-    <value>toolStripDropDownButton1</value>
-  </data>
-  <data name="&gt;&gt;toolStripDropDownButton1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;goPathMenu.Name" xml:space="preserve">
-    <value>goPathMenu</value>
-  </data>
-  <data name="&gt;&gt;goPathMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pausePathMenu.Name" xml:space="preserve">
-    <value>pausePathMenu</value>
-  </data>
-  <data name="&gt;&gt;pausePathMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem7.Name" xml:space="preserve">
-    <value>toolStripMenuItem7</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;recordPathMenu.Name" xml:space="preserve">
-    <value>recordPathMenu</value>
-  </data>
-  <data name="&gt;&gt;recordPathMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;deletePathMenu.Name" xml:space="preserve">
-    <value>deletePathMenu</value>
-  </data>
-  <data name="&gt;&gt;deletePathMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;lblAreaRate.Name" xml:space="preserve">
     <value>lblAreaRate</value>
   </data>
@@ -11766,149 +11703,11 @@
   <data name="&gt;&gt;stripDistance.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripBtnDropDownSpecialFunctions.Name" xml:space="preserve">
-    <value>toolStripBtnDropDownSpecialFunctions</value>
-  </data>
-  <data name="&gt;&gt;toolStripBtnDropDownSpecialFunctions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripDeleteApplied.Name" xml:space="preserve">
-    <value>toolStripDeleteApplied</value>
-  </data>
-  <data name="&gt;&gt;toolStripDeleteApplied.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripAreYouSure.Name" xml:space="preserve">
-    <value>toolStripAreYouSure</value>
-  </data>
-  <data name="&gt;&gt;toolStripAreYouSure.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;deleteContourPathsToolStripMenuItem.Name" xml:space="preserve">
-    <value>deleteContourPathsToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;deleteContourPathsToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripBtnMakeBndContour.Name" xml:space="preserve">
-    <value>toolStripBtnMakeBndContour</value>
-  </data>
-  <data name="&gt;&gt;toolStripBtnMakeBndContour.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripBtnSmoothABCurve.Name" xml:space="preserve">
-    <value>toolStripBtnSmoothABCurve</value>
-  </data>
-  <data name="&gt;&gt;toolStripBtnSmoothABCurve.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripDropDownButton2.Name" xml:space="preserve">
-    <value>toolStripDropDownButton2</value>
-  </data>
-  <data name="&gt;&gt;toolStripDropDownButton2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripNTRIPConfig.Name" xml:space="preserve">
-    <value>toolStripNTRIPConfig</value>
-  </data>
-  <data name="&gt;&gt;toolStripNTRIPConfig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolstripUDPConfig.Name" xml:space="preserve">
-    <value>toolstripUDPConfig</value>
-  </data>
-  <data name="&gt;&gt;toolstripUDPConfig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolstripUSBPortsConfig.Name" xml:space="preserve">
-    <value>toolstripUSBPortsConfig</value>
-  </data>
-  <data name="&gt;&gt;toolstripUSBPortsConfig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolstripDisplayConfig.Name" xml:space="preserve">
-    <value>toolstripDisplayConfig</value>
-  </data>
-  <data name="&gt;&gt;toolstripDisplayConfig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripAutoSteerChart.Name" xml:space="preserve">
-    <value>toolStripAutoSteerChart</value>
-  </data>
-  <data name="&gt;&gt;toolStripAutoSteerChart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolstripAutoSteerConfig.Name" xml:space="preserve">
-    <value>toolstripAutoSteerConfig</value>
-  </data>
-  <data name="&gt;&gt;toolstripAutoSteerConfig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolstripVehicleConfig.Name" xml:space="preserve">
-    <value>toolstripVehicleConfig</value>
-  </data>
-  <data name="&gt;&gt;toolstripVehicleConfig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolstripYouTurnConfig.Name" xml:space="preserve">
-    <value>toolstripYouTurnConfig</value>
-  </data>
-  <data name="&gt;&gt;toolstripYouTurnConfig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripDropDownBtnFuncs.Name" xml:space="preserve">
-    <value>toolStripDropDownBtnFuncs</value>
-  </data>
-  <data name="&gt;&gt;toolStripDropDownBtnFuncs.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolstripField.Name" xml:space="preserve">
-    <value>toolstripField</value>
-  </data>
-  <data name="&gt;&gt;toolstripField.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolstripBoundary.Name" xml:space="preserve">
-    <value>toolstripBoundary</value>
-  </data>
-  <data name="&gt;&gt;toolstripBoundary.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolstripVR.Name" xml:space="preserve">
-    <value>toolstripVR</value>
-  </data>
-  <data name="&gt;&gt;toolstripVR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolstripResetTrip.Name" xml:space="preserve">
-    <value>toolstripResetTrip</value>
-  </data>
-  <data name="&gt;&gt;toolstripResetTrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;stripOnlineGPS.Name" xml:space="preserve">
     <value>stripOnlineGPS</value>
   </data>
   <data name="&gt;&gt;stripOnlineGPS.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemFlagRed.Name" xml:space="preserve">
-    <value>toolStripMenuItemFlagRed</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemFlagRed.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuFlagGrn.Name" xml:space="preserve">
-    <value>toolStripMenuFlagGrn</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuFlagGrn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuFlagYel.Name" xml:space="preserve">
-    <value>toolStripMenuFlagYel</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuFlagYel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
     <value>toolStripSeparator3</value>
@@ -11916,29 +11715,11 @@
   <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuFlagDelete.Name" xml:space="preserve">
-    <value>toolStripMenuFlagDelete</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuFlagDelete.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;toolStripSeparator4.Name" xml:space="preserve">
     <value>toolStripSeparator4</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator4.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuFlagDeleteAll.Name" xml:space="preserve">
-    <value>toolStripMenuFlagDeleteAll</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuFlagDeleteAll.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuAreaSide.Name" xml:space="preserve">
-    <value>toolStripMenuAreaSide</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuAreaSide.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;imageList1.Name" xml:space="preserve">
     <value>imageList1</value>
@@ -12040,6 +11821,246 @@
     <value>toolStripMenuItem6</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;deleteFlagToolOpenGLContextMenu.Name" xml:space="preserve">
+    <value>deleteFlagToolOpenGLContextMenu</value>
+  </data>
+  <data name="&gt;&gt;deleteFlagToolOpenGLContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;googleEarthOpenGLContextMenu.Name" xml:space="preserve">
+    <value>googleEarthOpenGLContextMenu</value>
+  </data>
+  <data name="&gt;&gt;googleEarthOpenGLContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripBatman.Name" xml:space="preserve">
+    <value>toolStripBatman</value>
+  </data>
+  <data name="&gt;&gt;toolStripBatman.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripBtnCamera.Name" xml:space="preserve">
+    <value>toolStripBtnCamera</value>
+  </data>
+  <data name="&gt;&gt;toolStripBtnCamera.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CameraNorthToolStripMenuItem.Name" xml:space="preserve">
+    <value>CameraNorthToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;CameraNorthToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CameraFollowingToolStripMenuItem.Name" xml:space="preserve">
+    <value>CameraFollowingToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;CameraFollowingToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CameraTopToolStripMenuItem.Name" xml:space="preserve">
+    <value>CameraTopToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;CameraTopToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripDropDownButton1.Name" xml:space="preserve">
+    <value>toolStripDropDownButton1</value>
+  </data>
+  <data name="&gt;&gt;toolStripDropDownButton1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;goPathMenu.Name" xml:space="preserve">
+    <value>goPathMenu</value>
+  </data>
+  <data name="&gt;&gt;goPathMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pausePathMenu.Name" xml:space="preserve">
+    <value>pausePathMenu</value>
+  </data>
+  <data name="&gt;&gt;pausePathMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem7.Name" xml:space="preserve">
+    <value>toolStripMenuItem7</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;recordPathMenu.Name" xml:space="preserve">
+    <value>recordPathMenu</value>
+  </data>
+  <data name="&gt;&gt;recordPathMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;deletePathMenu.Name" xml:space="preserve">
+    <value>deletePathMenu</value>
+  </data>
+  <data name="&gt;&gt;deletePathMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripBtnDropDownSpecialFunctions.Name" xml:space="preserve">
+    <value>toolStripBtnDropDownSpecialFunctions</value>
+  </data>
+  <data name="&gt;&gt;toolStripBtnDropDownSpecialFunctions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripDeleteApplied.Name" xml:space="preserve">
+    <value>toolStripDeleteApplied</value>
+  </data>
+  <data name="&gt;&gt;toolStripDeleteApplied.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripAreYouSure.Name" xml:space="preserve">
+    <value>toolStripAreYouSure</value>
+  </data>
+  <data name="&gt;&gt;toolStripAreYouSure.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;deleteContourPathsToolStripMenuItem.Name" xml:space="preserve">
+    <value>deleteContourPathsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;deleteContourPathsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripBtnMakeBndContour.Name" xml:space="preserve">
+    <value>toolStripBtnMakeBndContour</value>
+  </data>
+  <data name="&gt;&gt;toolStripBtnMakeBndContour.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripBtnSmoothABCurve.Name" xml:space="preserve">
+    <value>toolStripBtnSmoothABCurve</value>
+  </data>
+  <data name="&gt;&gt;toolStripBtnSmoothABCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;treePlanterToolStripMenuItem.Name" xml:space="preserve">
+    <value>treePlanterToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;treePlanterToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripDropDownButton2.Name" xml:space="preserve">
+    <value>toolStripDropDownButton2</value>
+  </data>
+  <data name="&gt;&gt;toolStripDropDownButton2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripNTRIPConfig.Name" xml:space="preserve">
+    <value>toolStripNTRIPConfig</value>
+  </data>
+  <data name="&gt;&gt;toolStripNTRIPConfig.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolstripUDPConfig.Name" xml:space="preserve">
+    <value>toolstripUDPConfig</value>
+  </data>
+  <data name="&gt;&gt;toolstripUDPConfig.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolstripUSBPortsConfig.Name" xml:space="preserve">
+    <value>toolstripUSBPortsConfig</value>
+  </data>
+  <data name="&gt;&gt;toolstripUSBPortsConfig.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolstripDisplayConfig.Name" xml:space="preserve">
+    <value>toolstripDisplayConfig</value>
+  </data>
+  <data name="&gt;&gt;toolstripDisplayConfig.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripAutoSteerChart.Name" xml:space="preserve">
+    <value>toolStripAutoSteerChart</value>
+  </data>
+  <data name="&gt;&gt;toolStripAutoSteerChart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolstripAutoSteerConfig.Name" xml:space="preserve">
+    <value>toolstripAutoSteerConfig</value>
+  </data>
+  <data name="&gt;&gt;toolstripAutoSteerConfig.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolstripVehicleConfig.Name" xml:space="preserve">
+    <value>toolstripVehicleConfig</value>
+  </data>
+  <data name="&gt;&gt;toolstripVehicleConfig.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolstripYouTurnConfig.Name" xml:space="preserve">
+    <value>toolstripYouTurnConfig</value>
+  </data>
+  <data name="&gt;&gt;toolstripYouTurnConfig.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripDropDownBtnFuncs.Name" xml:space="preserve">
+    <value>toolStripDropDownBtnFuncs</value>
+  </data>
+  <data name="&gt;&gt;toolStripDropDownBtnFuncs.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolstripField.Name" xml:space="preserve">
+    <value>toolstripField</value>
+  </data>
+  <data name="&gt;&gt;toolstripField.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolstripBoundary.Name" xml:space="preserve">
+    <value>toolstripBoundary</value>
+  </data>
+  <data name="&gt;&gt;toolstripBoundary.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolstripVR.Name" xml:space="preserve">
+    <value>toolstripVR</value>
+  </data>
+  <data name="&gt;&gt;toolstripVR.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolstripResetTrip.Name" xml:space="preserve">
+    <value>toolstripResetTrip</value>
+  </data>
+  <data name="&gt;&gt;toolstripResetTrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemFlagRed.Name" xml:space="preserve">
+    <value>toolStripMenuItemFlagRed</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemFlagRed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuFlagGrn.Name" xml:space="preserve">
+    <value>toolStripMenuFlagGrn</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuFlagGrn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuFlagYel.Name" xml:space="preserve">
+    <value>toolStripMenuFlagYel</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuFlagYel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuFlagDelete.Name" xml:space="preserve">
+    <value>toolStripMenuFlagDelete</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuFlagDelete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuFlagDeleteAll.Name" xml:space="preserve">
+    <value>toolStripMenuFlagDeleteAll</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuFlagDeleteAll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuAreaSide.Name" xml:space="preserve">
+    <value>toolStripMenuAreaSide</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuAreaSide.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

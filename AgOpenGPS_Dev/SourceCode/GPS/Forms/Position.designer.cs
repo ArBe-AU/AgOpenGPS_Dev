@@ -40,6 +40,7 @@ namespace AgOpenGPS
 
         //a distance between previous and current fix
         private double distance = 0.0;
+        public double treeSpacingCounter = 0.0;
   
         //how far travelled since last section was added, section points
         double sectionTriggerDistance = 0, sectionTriggerStepDistance = 0; 
@@ -98,7 +99,7 @@ namespace AgOpenGPS
                 //start the watch and time till it gets back here
                 swFrame.Start();
 
-                //reset both flags
+                //reset  flags
                 pn.updatedGGA = false;
                 pn.updatedOGI = false;
                 pn.updatedRMC = false;
@@ -120,7 +121,7 @@ namespace AgOpenGPS
         public double eastingBeforeRoll;
         public double eastingAfterRoll;
         public double rollUsed;
-        double offset = 0;
+        private double offset = 0;
         public double headlandDistanceDelta = 0, boundaryDistanceDelta = 0;
 
         private void UpdateFixPosition()
@@ -194,6 +195,11 @@ namespace AgOpenGPS
 
             //grab the most current fix and save the distance from the last fix
             distanceCurrentStepFix = glm.Distance(pn.fix, stepFixPts[0]);
+            if (vehicle.treeSpacing != 0 && section[0].isSectionOn) treeSpacingCounter += (distanceCurrentStepFix*100);
+            
+            //keep the distance below spacing
+            while (treeSpacingCounter > vehicle.treeSpacing && vehicle.treeSpacing != 0) treeSpacingCounter -= vehicle.treeSpacing;            
+
             fixStepDist = distanceCurrentStepFix;
 
             //if  min distance isn't exceeded, keep adding old fixes till it does
@@ -371,18 +377,18 @@ namespace AgOpenGPS
             if (guidanceLineDistanceOff < 29000)
             {
                 avgXTE[avgXTECntr] = Math.Abs(guidanceLineDistanceOff);
-                if (avgXTECntr++ > 18) avgXTECntr = 0;
+                if (avgXTECntr++ > 10) avgXTECntr = 0;
                 crossTrackError = 0;
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < 11; i++)
                 {
                      crossTrackError += (int)avgXTE[i];
                 }
-                crossTrackError /= 20;
+                crossTrackError /= 10;
             }
             else
             {
                 avgXTE[avgXTECntr] = 0;
-                if (avgXTECntr++ > 18) avgXTECntr = 0;
+                if (avgXTECntr++ > 10) avgXTECntr = 0;
                 crossTrackError = 0;
             }
 
@@ -804,7 +810,7 @@ namespace AgOpenGPS
                 if (pn.speed < 1.0) speed = 1.0;
                 bool autoBtn = (autoBtnState == btnStates.Auto);
 
-                CRecPathPt pt = new CRecPathPt(pivotAxlePos.easting, pivotAxlePos.northing, pivotAxlePos.heading, pn.speed, autoBtn);
+                CRecPathPt pt = new CRecPathPt(steerAxlePos.easting, steerAxlePos.northing, steerAxlePos.heading, pn.speed, autoBtn);
                 recPath.recList.Add(pt);
             }
             

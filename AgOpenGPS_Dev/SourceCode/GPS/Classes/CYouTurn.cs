@@ -1213,11 +1213,10 @@ namespace AgOpenGPS
 
                 //generate the turn points
                 ytList = dubYouTurnPath.GenerateDubins(start, goal);
-                //vec3 pt = new vec3();
-
                 int count = ytList.Count;
                 if (count == 0) return false;
 
+                //these are the lead in lead out lines that add to the turn
                 AddSequenceLines(head);
             }
 
@@ -1322,77 +1321,6 @@ namespace AgOpenGPS
 
             if (isYouTurnRight) mf.AutoYouTurnButtonsRightTurn();
             else mf.AutoYouTurnButtonsLeftTurn();
-
-            //set point and save to start measuring from
-            //isYouTurnTriggerPointSet = true;
-
-            ////data buffer for pixels read from off screen buffer
-            //byte[] grnPix = new byte[501];
-
-            ////read a pixel line across full buffer width
-            ////glb.ReadPixels(0, 255, 499, 1, OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, grnPix);
-            //GL.ReadPixels(0, 255, 499, 1, PixelFormat.Green, PixelType.UnsignedByte, grnPix);
-
-            ////set up the positions to scan in the array for applied
-            //int leftPos = mf.vehicle.rpXPosition - 15;
-            //if (leftPos < 0) leftPos = 0;
-            //int rightPos = mf.vehicle.rpXPosition + mf.vehicle.rpWidth + 15;
-            //if (rightPos > 499) rightPos = 499;
-
-            ////do we need a left or right turn
-            //bool isGrnOnLeft = false, isGrnOnRight = false;
-
-            ////green on left means turn right
-            //for (int j = leftPos; j < mf.vehicle.rpXPosition; j++)
-            //{ isGrnOnLeft = grnPix[j] > 50; }
-
-            ////green on right means turn left
-            //for (int j = (rightPos - 10); j < rightPos; j++)
-            //{ isGrnOnRight = grnPix[j] > 50; }
-
-            //one side or the other - but not both Exclusive Or
-            //if (isGrnOnLeft ^ isGrnOnRight)
-            //{
-            //    isYouTurnRight = !isGrnOnRight;
-            //}
-            //else //can't determine which way to turn, so pick opposite of last turn
-            //modify the buttons to show the correct turn direction
-
-            //if (isDew2Set) //Loops of 2,3 skips
-            //{
-            //    bool dir = true;
-            //    if (isDew2Right) dir = dew2Direction[dew2Index];
-            //    else dir = !dew2Direction[dew2Index];
-
-            //    if (dir)
-            //    {
-            //        isYouTurnRight = true;
-            //        isLastYouTurnRight = !isYouTurnRight;
-            //    }
-            //    else
-            //    {
-            //        isYouTurnRight = false;
-            //        isLastYouTurnRight = !isYouTurnRight;
-            //    }
-            //}
-
-            //if (mf.yt.isDew4Set) //Loops of 3,4 skips
-            //{
-            //    bool dir = true;
-            //    if (isDew2Right) dir = dew4Direction[dew4Index];
-            //    else dir = !dew4Direction[dew4Index];
-
-            //    if (dir)
-            //    {
-            //        isYouTurnRight = true;
-            //        isLastYouTurnRight = !isYouTurnRight;
-            //    }
-            //    else
-            //    {
-            //        isYouTurnRight = false;
-            //        isLastYouTurnRight = !isYouTurnRight;
-            //    }
-            //}
         }
 
         //Normal copmpletion of youturn
@@ -1624,11 +1552,15 @@ namespace AgOpenGPS
                 else onA = ptCount - closestPt;
 
                 //return and reset if too far away or end of the line
-                if (B >= ptCount - 1)
+                if (B >= ptCount-1)
                 {
                     CompleteYouTurn();
                     return;
                 }
+
+                //feed forward to turn faster
+                A++;
+                B++;
 
                 //get the distance from currently active AB line, precalc the norm of line
                 double dx = ytList[B].easting - ytList[A].easting;
@@ -1645,9 +1577,6 @@ namespace AgOpenGPS
                 //are we on the right side or not, the sign from above determines that
                 isOnRightSideCurrentLine = distanceFromCurrentLine > 0;
 
-                //absolute the distance
-                //distanceFromCurrentLine = Math.Abs(distanceFromCurrentLine);
-
                 //Calc point on ABLine closest to current position and 90 degrees to segment heading
                 double U = (((pivot.easting - ytList[A].easting) * dx)
                             + ((pivot.northing - ytList[A].northing) * dz))
@@ -1656,9 +1585,6 @@ namespace AgOpenGPS
                 //critical point used as start for the uturn path - critical
                 rEastYT = ytList[A].easting + (U * dx);
                 rNorthYT = ytList[A].northing + (U * dz);
-
-                //distance is negative if on left, positive if on right
-                //if (!isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
 
                 //the first part of stanley is to extract heading error
                 double abFixHeadingDelta = (pivot.heading - abHeading);

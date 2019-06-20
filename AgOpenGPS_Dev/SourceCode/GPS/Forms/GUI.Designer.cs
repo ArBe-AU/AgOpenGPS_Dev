@@ -3069,6 +3069,24 @@ namespace AgOpenGPS
             form.ShowDialog();
             cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
         }
+        private void treePlanterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fc = Application.OpenForms["FormTreePlant"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                return;
+            }
+
+            //
+            Form form = new FormTreePlant(this);
+            form.Show();
+
+        }
+
+
         private void toolstripAutoSteerConfig_Click(object sender, EventArgs e)
         {
             //check if window already exists
@@ -3274,7 +3292,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if (pn.fixQuality == 0) return "Invalid";
+                if (timerSim.Enabled) return "Simulator";
+                else if (pn.fixQuality == 0) return "Invalid";
                 else if (pn.fixQuality == 1) return "GPS fix";
                 else if (pn.fixQuality == 2) return "DGPS fix";
                 else if (pn.fixQuality == 3) return "PPS fix";
@@ -3282,7 +3301,7 @@ namespace AgOpenGPS
                 else if (pn.fixQuality == 5) return "Flt RTK";
                 else if (pn.fixQuality == 6) return "Estimate";
                 else if (pn.fixQuality == 7) return "Man IP";
-                else if (pn.fixQuality == 8) return "Sim";
+                else if (pn.fixQuality == 8) return "Simulator";
                 else return "Unknown";
             }
         }

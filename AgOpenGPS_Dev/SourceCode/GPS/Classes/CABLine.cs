@@ -458,7 +458,7 @@ namespace AgOpenGPS
 
             mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
             mf.guidanceLineSteerAngle = (Int16)(steerAngleAB * 100);
-
+            
             if (mf.yt.isYouTurnTriggered)
             {
                 //do the pure pursuit from youTurn

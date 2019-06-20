@@ -62,6 +62,7 @@ namespace AgOpenGPS
         public double minLookAheadDistance = 2.0;
         public double maxSteerAngle;
         public double maxAngularVelocity;
+        public double treeSpacing;
 
         public CVehicle(FormGPS _f)
         {
@@ -107,6 +108,8 @@ namespace AgOpenGPS
 
             maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
             maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
+
+            treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
         }
 
         public double UpdateGoalPointDistance(double distanceFromCurrentLine)
