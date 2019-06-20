@@ -29,12 +29,11 @@
                                         // When tractor rolls to the right, it should show positive angle
   #define IsRollToRightNotPositive 0    // Set to 0 if angle is positive
                                         // Set to 1 if roll to right shows negative
-
+  
                                         //using the dogs or not
-  #define IsUsingDogs2 0                //set to 0 if using MMA
+  #define IsUsingDogs2 1                //set to 0 if using MMA
                                         //set to 1 if using DOGS2
-                                    
-
+                                  
   //##########################################################################################################
   //### End of Setup Zone ####################################################################################
   //##########################################################################################################
@@ -66,10 +65,11 @@
   //Kalman variables
   float rollK = 0, Pc = 0.0, G = 0.0, P = 1.0, Xp = 0.0, Zp = 0.0;
   float XeRoll = 0;
-  const float varRoll = 0.1; // variance,
-  const float varProcess = 0.0001; //smaller is more filtering
+  const float varRoll = 0.5; // variance,
+  const float varProcess = 0.001; //smaller is more filtering
 
    //program flow
+  float rollDogs = 0;
   bool isDataFound = false, isSettingFound = false;
   int header = 0, tempHeader = 0, temp;
 
@@ -117,7 +117,6 @@ void setup()
     Serial.println("MMA init fails!!");
     
   //ads.setGain(GAIN_ONE);
-
 }
 
 void loop()
@@ -142,7 +141,6 @@ void loop()
 			serialResetTimer = 0;
 		}
 
-   //inclinometer
 
     if (IsUsingDogs2)
     {
@@ -152,18 +150,19 @@ void loop()
     }
     else
     {
+  		//inclinometer
       if (MMA.available()) //is there data available
       {      
         MMA.read(); // Reads only "x and y" accel
-      }   
-       
+      }    
+      
       //if is set to 1 //get the roll from MMA - value from 0 to 1
       if (UseMMA_Y_Axis) rollK = MMA.cy * 90 * 16; //UseMMa_Y_Axis is set to 1
       else rollK = MMA.cx * 90 * 16; 
       //if not positive when rolling to the right
       if (IsRollToRightNotPositive) rollK *= -1.0;
     }
-
+    
 		//Kalman filter
 		Pc = P + varProcess;
 		G = Pc / (Pc + varRoll);
@@ -173,21 +172,22 @@ void loop()
 		XeRoll = G * (rollK - Zp) + Xp;
 
     //read all the switches
-		workSwitch = digitalRead(WORKSW_PIN);  // read work switch
+    workSwitch = digitalRead(WORKSW_PIN);  // read work switch
     steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch open = 0n closed = Off
     remoteSwitch = digitalRead(REMOTE_PIN); //read auto steer enable switch open = 0n closed = Off
     switchByte = 0;
     switchByte |= (remoteSwitch << 2); //put remote in bit 2
     switchByte |= (steerSwitch << 1);   //put steerswitch status in bit 1 position
     switchByte |= workSwitch;
-    
-		//steering position and steer angle		
+
+    //steering position and steer angle   
     steeringPosition = ads.readADC_SingleEnded(0);    //ADS1115 Differential Mode 
     steeringPosition = (steeringPosition >> 3); //bit shift by 3  0 to 3320 is 0 to 5v
     
-		steeringPosition = (steeringPosition - steeringPositionZero + (XeRoll * 0.01 * Kd) );   //read the steering position sensor
+    steeringPosition = (steeringPosition - steeringPositionZero - (XeRoll * Kd/10 ) );   //read the steering position sensor
     if (SteeringRightIsNotPositive) steeringPosition *= -1.0;
-   
+
+    /*
     //close enough to center, remove any integral correction
     if (distanceFromLine <= 40 && distanceFromLine >= -40) corr = 0;
     else
@@ -208,6 +208,7 @@ void loop()
         steerAngleSetPoint += corr;
       }
     }
+    */
     
 		//convert position to steer angle.
 		steerAngleActual = (steeringPosition) / steerSensorCounts;
@@ -235,7 +236,7 @@ void loop()
 		Serial.print(",");
 
     //heading 
-    Serial.print(9999);
+    Serial.print(rollDogs);
     Serial.print(",");
 
 		//*******  if no roll is installed, send 9999
@@ -295,7 +296,7 @@ void loop()
 
 		//change the factors as required for your own PID values
 	  Kp = (float)Serial.read() * 1.0;      // read Kp from AgOpenGPS
-		Ki = (float)Serial.read() * 0.001;    // read Ki from AgOpenGPS
+		Ki = (float)Serial.read() * 1.0;    // read Ki from AgOpenGPS
 		Kd = (float)Serial.read() * 1.0;      // read Kd from AgOpenGPS
 		Ko = (float)Serial.read() * 0.1;      // read Ko from AgOpenGPS
    
@@ -304,7 +305,7 @@ void loop()
     minPWMValue = Serial.read();                 //read the minimum amount of PWM for instant on
     
 		maxIntegralValue = Serial.read()*0.1;   //
-		steerSensorCounts = Serial.read();      //sent as 10 times the setting displayed in AOG
+		steerSensorCounts = Serial.read();      //
 	}
 }
 

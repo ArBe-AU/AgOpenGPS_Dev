@@ -17,15 +17,15 @@
   //Only change from 0 if the response is incorrect. Start with all four set to 0.
 
                                             //Steering to the right should be a positive angle
-  #define SteeringRightIsNotPositive 0      // Set to 0 if it steers the right way    
+  #define SteeringRightIsNotPositive 1      // Set to 0 if it steers the right way    
                                             // Set to 1 if steer to right shows negative
 
                                             // Does the motor spin the right way?
-  #define SteerMotorDirectionBackwards 0    // Set to 0 if is correct direction
+  #define SteerMotorDirectionBackwards 1    // Set to 0 if is correct direction
                                             // Set to 1 if it turns the wrong way
                                     
                                         // Depending on board orientation, choose the right Axis
-  #define UseMMA_Y_Axis 0               // Set to 0 to use X axis of MMA
+  #define UseMMA_Y_Axis 1               // Set to 0 to use X axis of MMA
                                         // Set to 1 to use Y axis of MMA
 
                                         // When tractor rolls to the right, it should show positive angle
@@ -33,7 +33,7 @@
                                         // Set to 1 if roll to right shows negative
 
                                         //using the dogs or not
-  #define IsUsingDogs2 0                //set to 0 if using MMA
+  #define IsUsingDogs2 1                //set to 0 if using MMA
                                         //set to 1 if using DOGS2
                                     
   //##########################################################################################################
@@ -71,6 +71,7 @@
   const float varProcess = 0.001; //smaller is more filtering
 
   //program flow
+  float rollDogs = 0;
   bool isDataFound = false, isSettingFound = false;
   int header = 0, tempHeader = 0, temp;
 
@@ -183,9 +184,8 @@ void loop()
 			serialResetTimer = 0;
 		}
 
-    //inclinometer
-
     if (IsUsingDogs2)
+
     {
       rollK = ((ads.readADC_SingleEnded(2))); // 24,000 to 2700
       rollK = (rollK - 13300)/28;
@@ -193,11 +193,12 @@ void loop()
     }
     else
     {
+      //inclinometer
       if (MMA.available()) //is there data available
       {      
         MMA.read(); // Reads only "x and y" accel
-      }   
-       
+      }    
+      
       //if is set to 1 //get the roll from MMA - value from 0 to 1
       if (UseMMA_Y_Axis) rollK = MMA.cy * 90 * 16; //UseMMa_Y_Axis is set to 1
       else rollK = MMA.cx * 90 * 16; 
@@ -226,9 +227,10 @@ void loop()
     steeringPosition = ads.readADC_SingleEnded(0);    //ADS1115 Differential Mode 
     steeringPosition = (steeringPosition >> 3); //bit shift by 3  0 to 3320 is 0 to 5v
     
-    steeringPosition = (steeringPosition - steeringPositionZero + (XeRoll * 0.01 * Kd) );   //read the steering position sensor
+    steeringPosition = (steeringPosition - steeringPositionZero - (XeRoll * Kd/10 ) );   //read the steering position sensor
     if (SteeringRightIsNotPositive) steeringPosition *= -1.0;
-    
+
+    /*
     //close enough to center, remove any integral correction
     if (distanceFromLine <= 40 && distanceFromLine >= -40) corr = 0;
     else
@@ -249,6 +251,7 @@ void loop()
         steerAngleSetPoint += corr;
       }
     }
+    */
     
 		//convert position to steer angle.
     steerAngleActual = (steeringPosition) / steerSensorCounts;
@@ -293,7 +296,7 @@ void loop()
     //off to AOG
     ether.sendUdp(toSend, sizeof(toSend), portMy, ipDestination, portDestination);
 
-      Serial.println(rollK);
+      //Serial.println(steerAngleSetPoint);
        
     
 	} //end of timed loop
@@ -350,7 +353,7 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
     if (data[0] == 0x7F && data[1] == 0xFC)
     {
       Kp = (float)data[2] * 1.0;      // read Kp from AgOpenGPS
-      Ki = (float)data[3] * 0.001;    // read Ki from AgOpenGPS
+      Ki = (float)data[3] * 1.0;    // read Ki from AgOpenGPS
       Kd = (float)data[4] * 1.0;      // read Kd from AgOpenGPS
       Ko = (float)data[5] * 0.1;      // read Ko from AgOpenGPS
       
