@@ -3292,7 +3292,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if (timerSim.Enabled) return "Simulator";
+                if (timerSim.Enabled)
+                    return "Simulator";
                 else if (pn.fixQuality == 0) return "Invalid";
                 else if (pn.fixQuality == 1) return "GPS fix";
                 else if (pn.fixQuality == 2) return "DGPS fix";
