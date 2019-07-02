@@ -83,20 +83,22 @@ namespace AgOpenGPS
         public vec3[] stepFixPts = new vec3[60];
         public double distanceCurrentStepFix = 0, fixStepDist, minFixStepDist = 0;        
         bool isFixHolding = false, isFixHoldLoaded = false;
-        
-        //called by watchdog timer every 50 ms
-        private void ScanForNMEA()
+
+        //called by watchdog timer every 10 ms
+        private bool ScanForNMEA()
         {
+            //if saving a file ignore any movement
+            if (isSavingFile) return false;
+
             //parse any data from pn.rawBuffer
             pn.ParseNMEA();
 
             //time for a frame update with new valid nmea data
             if (pn.updatedGGA | pn.updatedOGI | pn.updatedRMC)
             {
-                //if saving a file ignore any movement
-                if (isSavingFile) return;
 
                 //start the watch and time till it gets back here
+                swFrame.Reset();
                 swFrame.Start();
 
                 //reset  flags
@@ -106,16 +108,26 @@ namespace AgOpenGPS
 
                 //update all data for new frame
                 UpdateFixPosition();
-            }
 
-            //must make sure arduinos are kept off if initializing
+                //Update the port connection counter - is reset every time new sentence is valid and ready
+                recvCounter++;
+
+                //new position updated
+                return true;
+            }
             else
             {
-                if (!isGPSPositionInitialized)  mc.ResetAllModuleCommValues();
+                if (isGPSPositionInitialized)
+                {
+                    return false;
+                }
+                else
+                {
+                    mc.ResetAllModuleCommValues();
+                    recvCounter++;
+                    return false;
+                }
             }
-
-            //Update the port connection counter - is reset every time new sentence is valid and ready
-            recvCounter++;
         }
 
         public double eastingBeforeRoll;
@@ -845,29 +857,29 @@ namespace AgOpenGPS
             else
             {
                 //if (ABLine.isABLineSet && isAutoSteerBtnOn)
-                if (isStanleyUsed)
-                {
-                    //Contour Base Track.... At least One section on, turn on if not
-                    if (sectionCounter != 0)
-                    {
-                        //keep the line going, everything is on for recording path
-                        if (ct.isContourOn) ct.AddPoint(steerAxlePos);
-                        else
-                        {
-                            ct.StartContourLine(steerAxlePos);
-                            ct.AddPoint(steerAxlePos);
-                        }
-                    }
+                //if (isStanleyUsed)
+                //{
+                //    //Contour Base Track.... At least One section on, turn on if not
+                //    if (sectionCounter != 0)
+                //    {
+                //        //keep the line going, everything is on for recording path
+                //        if (ct.isContourOn) ct.AddPoint(steerAxlePos);
+                //        else
+                //        {
+                //            ct.StartContourLine(steerAxlePos);
+                //            ct.AddPoint(steerAxlePos);
+                //        }
+                //    }
 
-                    //All sections OFF so if on, turn off
-                    else { if (ct.isContourOn) { ct.StopContourLine(steerAxlePos); } }
+                //    //All sections OFF so if on, turn off
+                //    else { if (ct.isContourOn) { ct.StopContourLine(steerAxlePos); } }
 
-                    //Build contour line if close enough to a patch
-                    if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(steerAxlePos);
+                //    //Build contour line if close enough to a patch
+                //    if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(steerAxlePos);
 
-                }
+                //}
 
-                else
+                //else
                 {
                     //Contour Base Track.... At least One section on, turn on if not
                     if (sectionCounter != 0)

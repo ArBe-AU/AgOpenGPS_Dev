@@ -366,7 +366,7 @@
             0,
             65536});
             this.nudMinFixStepDistance.Minimum = new decimal(new int[] {
-            2,
+            6,
             0,
             0,
             65536});

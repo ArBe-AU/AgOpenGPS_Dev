@@ -665,7 +665,7 @@
             // 
             // tmrWatchdog
             // 
-            this.tmrWatchdog.Interval = 50;
+            this.tmrWatchdog.Interval = 10;
             this.tmrWatchdog.Tick += new System.EventHandler(this.tmrWatchdog_tick);
             // 
             // statusStrip1
@@ -1992,6 +1992,7 @@
             // timerSim
             // 
             this.timerSim.Enabled = true;
+            this.timerSim.Interval = 200;
             this.timerSim.Tick += new System.EventHandler(this.timerSim_Tick);
             // 
             // toolStripMenuItem2

@@ -49,7 +49,10 @@ namespace AgOpenGPS
                 }
                 btnZeroDistance.Text = "Stop";
             }
-            else btnZeroDistance.Text = "Start";
+            else
+            {
+                btnZeroDistance.Text = "Start";
+            }
 
             lblSpeed.Text = mf.pn.speed.ToString("N1");
             lblTrees.Text = trees.ToString();
@@ -71,7 +74,6 @@ namespace AgOpenGPS
                 lblDistanceTree.Text = ((UInt16)mf.treeSpacingCounter).ToString();
                 lblStepDistance.Text = (mf.distanceCurrentStepFix * 100).ToString("N1");
                 btnZeroDistance.BackColor = Color.OrangeRed;
-
             }
             else
             {

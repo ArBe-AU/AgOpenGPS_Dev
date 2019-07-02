@@ -535,7 +535,7 @@ namespace AgOpenGPS
             }
 
             //if no boundaries, just return.
-            if (!mf.bnd.bndArr[0].isSet) return;
+            //if (!mf.bnd.bndArr[0].isSet) return;
 
             int ctCount = ctList.Count;
             if (ctCount < 6) return;
@@ -616,7 +616,7 @@ namespace AgOpenGPS
             for (int i = 1; i < cnt; i++)
             {
                 vec3 pt3 = arr[i];
-                pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i-1].easting, arr[i + 1].northing - arr[i-1].northing);
                 if (pt3.heading < 0) pt3.heading += glm.twoPI;
                 ctList.Add(pt3);
             }
@@ -663,8 +663,8 @@ namespace AgOpenGPS
 
                     if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dy) < Double.Epsilon) return;
 
-                    //abHeading = Math.Atan2(dz, dx);
-                    abHeading = ctList[A].heading;
+                    abHeading = Math.Atan2(dx, dy);
+                    //abHeading = ctList[A].heading;
 
                     //how far from current AB Line is fix
                     distanceFromCurrentLine = ((dy * steer.easting) - (dx * steer.northing) + (ctList[B].easting
@@ -690,6 +690,20 @@ namespace AgOpenGPS
 
                     rEastCT = ctList[A].easting + (U * dx);
                     rNorthCT = ctList[A].northing + (U * dy);
+
+                    ////find closest point to goal to get heading. 
+                    //minDistA = 99999;
+                    //for (int t = 0; t < ptCount; t++)
+                    //{
+                    //    double dist = ((rEastCT - ctList[t].easting) * (rEastCT - ctList[t].easting))
+                    //                    + ((rNorthCT - ctList[t].northing) * (rNorthCT - ctList[t].northing));
+                    //    if (dist < minDistA)
+                    //    {
+                    //        A = t;
+                    //    }
+                    //}
+
+                    //abHeading = ctList[A].heading;
 
                     //distance is negative if on left, positive if on right
                     if (isABSameAsVehicleHeading)
