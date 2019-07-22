@@ -44,7 +44,7 @@ namespace AgOpenGPS
         public void AutoSteerDataOutToPort()
         {
             //load the uturn byte with the accumulated spacing
-            if (vehicle.treeSpacing != 0) mc.autoSteerData[mc.sdYouTurnByte] = (byte)treeSpacingCounter;
+            if (vehicle.treeSpacing != 0) mc.autoSteerData[mc.sdYouTurnByte] = (byte)treeTrigger;
 
             //default to a stop initially
             mc.machineControlData[mc.cnPedalControl] &= 0b00111111;

@@ -74,6 +74,8 @@ namespace AgOpenGPS
                 lblDistanceTree.Text = ((UInt16)mf.treeSpacingCounter).ToString();
                 lblStepDistance.Text = (mf.distanceCurrentStepFix * 100).ToString("N1");
                 btnZeroDistance.BackColor = Color.OrangeRed;
+                mf.vehicle.treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
+
             }
             else
             {
@@ -89,6 +91,7 @@ namespace AgOpenGPS
                 lblDistanceTree.Text = ((UInt16)mf.treeSpacingCounter).ToString();
                 lblStepDistance.Text = (mf.distanceCurrentStepFix * 100).ToString("N1");
                 btnZeroDistance.BackColor = Color.LightGreen;
+                mf.vehicle.treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
             }
 
             isRunning = !isRunning;

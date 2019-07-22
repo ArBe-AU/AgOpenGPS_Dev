@@ -45,6 +45,7 @@ namespace AgOpenGPS
         //a distance between previous and current fix
         private double distance = 0.0;
         public double treeSpacingCounter = 0.0;
+        public int treeTrigger = 0;
   
         //how far travelled since last section was added, section points
         double sectionTriggerDistance = 0, sectionTriggerStepDistance = 0; 
@@ -209,9 +210,14 @@ namespace AgOpenGPS
             //grab the most current fix and save the distance from the last fix
             distanceCurrentStepFix = glm.Distance(pn.fix, stepFixPts[0]);
             if (vehicle.treeSpacing != 0 && section[0].isSectionOn) treeSpacingCounter += (distanceCurrentStepFix*100);
-            
+
             //keep the distance below spacing
-            while (treeSpacingCounter > vehicle.treeSpacing && vehicle.treeSpacing != 0) treeSpacingCounter -= vehicle.treeSpacing;            
+            if (treeSpacingCounter > vehicle.treeSpacing && vehicle.treeSpacing != 0)
+            {
+                if (treeTrigger == 0) treeTrigger = 1;
+                else treeTrigger = 0;
+                while (treeSpacingCounter > vehicle.treeSpacing) treeSpacingCounter -= vehicle.treeSpacing;
+            }
 
             fixStepDist = distanceCurrentStepFix;
 

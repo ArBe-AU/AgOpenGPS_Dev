@@ -100,9 +100,9 @@
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label1.Location = new System.Drawing.Point(125, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 19);
+            this.label1.Size = new System.Drawing.Size(112, 19);
             this.label1.TabIndex = 309;
-            this.label1.Text = "Step (cm)";
+            this.label1.Text = "GPS Step (cm)";
             // 
             // btnZeroDistance
             // 
@@ -111,7 +111,7 @@
             this.btnZeroDistance.Image = global::AgOpenGPS.Properties.Resources.Snap2;
             this.btnZeroDistance.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnZeroDistance.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZeroDistance.Location = new System.Drawing.Point(12, 12);
+            this.btnZeroDistance.Location = new System.Drawing.Point(8, 12);
             this.btnZeroDistance.Name = "btnZeroDistance";
             this.btnZeroDistance.Size = new System.Drawing.Size(91, 96);
             this.btnZeroDistance.TabIndex = 142;
@@ -128,7 +128,7 @@
             this.btnStop.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnStop.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnStop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnStop.Location = new System.Drawing.Point(180, 98);
+            this.btnStop.Location = new System.Drawing.Point(209, 98);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(74, 81);
             this.btnStop.TabIndex = 141;
@@ -167,9 +167,9 @@
             this.lblTrees.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblTrees.Location = new System.Drawing.Point(134, 61);
             this.lblTrees.Name = "lblTrees";
-            this.lblTrees.Size = new System.Drawing.Size(57, 33);
+            this.lblTrees.Size = new System.Drawing.Size(49, 33);
             this.lblTrees.TabIndex = 312;
-            this.lblTrees.Text = "1.2";
+            this.lblTrees.Text = "11";
             this.lblTrees.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
@@ -188,7 +188,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(260, 183);
+            this.ClientSize = new System.Drawing.Size(289, 183);
             this.ControlBox = false;
             this.Controls.Add(this.lblStepDistance);
             this.Controls.Add(this.lblSpacing);

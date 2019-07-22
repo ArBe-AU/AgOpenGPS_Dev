@@ -768,9 +768,9 @@
             this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label8.Location = new System.Drawing.Point(617, 273);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(228, 25);
+            this.label8.Size = new System.Drawing.Size(241, 25);
             this.label8.TabIndex = 81;
-            this.label8.Text = "Range: 10 to 250 cm";
+            this.label8.Text = "Range: 10 to 5000 cm";
             // 
             // label5
             // 
@@ -797,14 +797,9 @@
             // nudTreeSpacing
             // 
             this.nudTreeSpacing.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudTreeSpacing.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.nudTreeSpacing.Location = new System.Drawing.Point(23, 40);
             this.nudTreeSpacing.Maximum = new decimal(new int[] {
-            250,
+            5000,
             0,
             0,
             0});
