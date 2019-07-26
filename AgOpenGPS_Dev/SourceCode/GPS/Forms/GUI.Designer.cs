@@ -3313,8 +3313,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if (mc.gyroHeading != 9999)
-                    return Math.Round(mc.gyroHeading * 0.0625, 1) + "\u00B0";
+                if (ahrs.correctionHeadingX16 != 9999)
+                    return Math.Round(ahrs.correctionHeadingX16 * 0.0625, 1) + "\u00B0";
                 else return "-";
             }
         }
@@ -3322,8 +3322,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if (mc.rollRaw != 9999)
-                    return Math.Round((mc.rollRaw - ahrs.rollZero) * 0.0625, 1) + "\u00B0";
+                if (ahrs.rollX16 != 9999)
+                    return Math.Round((ahrs.rollX16 - ahrs.rollZeroX16) * 0.0625, 1) + "\u00B0";
                 else return "-";
             }
         }

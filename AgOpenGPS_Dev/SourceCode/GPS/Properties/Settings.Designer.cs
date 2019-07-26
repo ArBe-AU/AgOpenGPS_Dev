@@ -326,24 +326,24 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int setIMU_pitchZero {
+        public int setIMU_pitchZeroX16 {
             get {
-                return ((int)(this["setIMU_pitchZero"]));
+                return ((int)(this["setIMU_pitchZeroX16"]));
             }
             set {
-                this["setIMU_pitchZero"] = value;
+                this["setIMU_pitchZeroX16"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int setIMU_rollZero {
+        public int setIMU_rollZeroX16 {
             get {
-                return ((int)(this["setIMU_rollZero"]));
+                return ((int)(this["setIMU_rollZeroX16"]));
             }
             set {
-                this["setIMU_rollZero"] = value;
+                this["setIMU_rollZeroX16"] = value;
             }
         }
         
@@ -662,12 +662,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isRollFromDogs {
+        public bool setIMU_isRollFromAutoSteer {
             get {
-                return ((bool)(this["setIMU_isRollFromDogs"]));
+                return ((bool)(this["setIMU_isRollFromAutoSteer"]));
             }
             set {
-                this["setIMU_isRollFromDogs"] = value;
+                this["setIMU_isRollFromAutoSteer"] = value;
             }
         }
         
@@ -686,12 +686,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isHeadingFromBNO {
+        public bool setIMU_isHeadingFromAutoSteer {
             get {
-                return ((bool)(this["setIMU_isHeadingFromBNO"]));
+                return ((bool)(this["setIMU_isHeadingFromAutoSteer"]));
             }
             set {
-                this["setIMU_isHeadingFromBNO"] = value;
+                this["setIMU_isHeadingFromAutoSteer"] = value;
             }
         }
         
@@ -704,18 +704,6 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setIMU_isRollFromBrick"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isRollFromGPS {
-            get {
-                return ((bool)(this["setIMU_isRollFromGPS"]));
-            }
-            set {
-                this["setIMU_isRollFromGPS"] = value;
             }
         }
         
@@ -746,12 +734,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isRollFromPAOGI {
+        public bool setIMU_isRollFromGPS {
             get {
-                return ((bool)(this["setIMU_isRollFromPAOGI"]));
+                return ((bool)(this["setIMU_isRollFromGPS"]));
             }
             set {
-                this["setIMU_isRollFromPAOGI"] = value;
+                this["setIMU_isRollFromGPS"] = value;
             }
         }
         
@@ -1088,6 +1076,30 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setDistance_TreeSpacing"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setIMU_isHeadingFromExtUDP {
+            get {
+                return ((bool)(this["setIMU_isHeadingFromExtUDP"]));
+            }
+            set {
+                this["setIMU_isHeadingFromExtUDP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setIMU_isRollFromExtUDP {
+            get {
+                return ((bool)(this["setIMU_isRollFromExtUDP"]));
+            }
+            set {
+                this["setIMU_isRollFromExtUDP"] = value;
             }
         }
     }

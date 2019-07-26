@@ -68,10 +68,7 @@
         //for the workswitch
         public bool isWorkSwitchActiveLow, isWorkSwitchEnabled;
 
-        public int workSwitchValue;
-
-        //imu and roll inclinometer
-        public int steerSwitchValue, gyroHeading = 9999, prevGyroHeading = 9999, rollRaw = 9999; //inclinometer ?
+        public int workSwitchValue, steerSwitchValue;
 
         //constructor
         public CModuleComm(FormGPS _f)
