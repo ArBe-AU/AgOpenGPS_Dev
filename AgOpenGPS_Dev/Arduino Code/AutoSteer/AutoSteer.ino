@@ -190,32 +190,12 @@ void loop()
     
     steeringPosition = (steeringPosition - steeringPositionZero);   //read the steering position sensor
     if (SteeringRightIsPositive) steeringPosition *= -1.0;
-
-    /*
-    //close enough to center, remove any integral correction
-    if (distanceFromLine <= 40 && distanceFromLine >= -40) corr = 0;
-    else
-    {
-      //use the integal value to adjust how much per cycle it increases
-      corr +=Ki;
-
-      //provide a limit - the old max integral value
-      if (corr > maxIntegralValue) corr = maxIntegralValue;
-
-      //now add the correction to fool steering position
-      if (distanceFromLine > 40) 
-      {
-        steerAngleSetPoint -= corr;
-      }
-      else
-      {
-        steerAngleSetPoint += corr;
-      }
-    }
-    */
     
 		//convert position to steer angle.
 		steerAngleActual = (steeringPosition) / steerSensorCounts;
+
+    //set the section relays D2 D5
+    SetRelays();
 
     //normal autosteer all ready to go
 		if (watchdogTimer < 10)
