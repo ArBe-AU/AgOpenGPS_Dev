@@ -326,24 +326,24 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int setIMU_pitchZeroX16 {
+        public int setIMU_pitchZero {
             get {
-                return ((int)(this["setIMU_pitchZeroX16"]));
+                return ((int)(this["setIMU_pitchZero"]));
             }
             set {
-                this["setIMU_pitchZeroX16"] = value;
+                this["setIMU_pitchZero"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int setIMU_rollZeroX16 {
+        public int setIMU_rollZero {
             get {
-                return ((int)(this["setIMU_rollZeroX16"]));
+                return ((int)(this["setIMU_rollZero"]));
             }
             set {
-                this["setIMU_rollZeroX16"] = value;
+                this["setIMU_rollZero"] = value;
             }
         }
         
@@ -662,12 +662,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isRollFromAutoSteer {
+        public bool setIMU_isRollFromDogs {
             get {
-                return ((bool)(this["setIMU_isRollFromAutoSteer"]));
+                return ((bool)(this["setIMU_isRollFromDogs"]));
             }
             set {
-                this["setIMU_isRollFromAutoSteer"] = value;
+                this["setIMU_isRollFromDogs"] = value;
             }
         }
         
@@ -686,12 +686,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isHeadingFromAutoSteer {
+        public bool setIMU_isHeadingFromBNO {
             get {
-                return ((bool)(this["setIMU_isHeadingFromAutoSteer"]));
+                return ((bool)(this["setIMU_isHeadingFromBNO"]));
             }
             set {
-                this["setIMU_isHeadingFromAutoSteer"] = value;
+                this["setIMU_isHeadingFromBNO"] = value;
             }
         }
         
@@ -704,6 +704,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setIMU_isRollFromBrick"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setIMU_isRollFromGPS {
+            get {
+                return ((bool)(this["setIMU_isRollFromGPS"]));
+            }
+            set {
+                this["setIMU_isRollFromGPS"] = value;
             }
         }
         
@@ -734,12 +746,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isRollFromGPS {
+        public bool setIMU_isRollFromPAOGI {
             get {
-                return ((bool)(this["setIMU_isRollFromGPS"]));
+                return ((bool)(this["setIMU_isRollFromPAOGI"]));
             }
             set {
-                this["setIMU_isRollFromGPS"] = value;
+                this["setIMU_isRollFromPAOGI"] = value;
             }
         }
         
@@ -1082,24 +1094,24 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isHeadingFromExtUDP {
+        public bool setF_IsSteerSwitchEnabled {
             get {
-                return ((bool)(this["setIMU_isHeadingFromExtUDP"]));
+                return ((bool)(this["setF_IsSteerSwitchEnabled"]));
             }
             set {
-                this["setIMU_isHeadingFromExtUDP"] = value;
+                this["setF_IsSteerSwitchEnabled"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isRollFromExtUDP {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setF_IsSteerSwitchActiveLow {
             get {
-                return ((bool)(this["setIMU_isRollFromExtUDP"]));
+                return ((bool)(this["setF_IsSteerSwitchActiveLow"]));
             }
             set {
-                this["setIMU_isRollFromExtUDP"] = value;
+                this["setF_IsSteerSwitchActiveLow"] = value;
             }
         }
     }
