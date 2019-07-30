@@ -21,10 +21,6 @@ namespace AgOpenGPS
     {
         #region // Class Props and instances
 
-        //Ray Bear
-        //Causes btnAutoSteer to turn on should the physical switch be on when job is started
-        public int previousSteerSwitchValue;
-
         //maximum sections available
         private const int MAXSECTIONS = 13;
 
@@ -222,12 +218,6 @@ namespace AgOpenGPS
         /// </summary>
         public CWorkSwitch workSwitch;
 
-        // Ray Bear
-        /// <summary>
-        /// Class containing steerswitch functionality
-        /// </summary>
-        public CSteerSwitch steerSwitch;
-
         /// <summary>
         /// Self Driving class
         /// </summary>
@@ -243,6 +233,12 @@ namespace AgOpenGPS
         // Constructor, Initializes a new instance of the "FormGPS" class.
         public FormGPS()
         {
+            //winform initialization
+            InitializeComponent();
+
+            //build the gesture structures
+            SetupStructSizes();
+
             //create the world grid
             worldGrid = new CWorldGrid(this);
 
@@ -331,16 +327,6 @@ namespace AgOpenGPS
 
             // Access to workswitch functionality
             workSwitch = new CWorkSwitch(this);
-
-            // Ray Bear
-            // Access to steerswitch functionality
-            steerSwitch = new CSteerSwitch(this);
-
-            //winform initialization
-            InitializeComponent();
-
-            //build the gesture structures
-            SetupStructSizes();
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)
@@ -491,11 +477,6 @@ namespace AgOpenGPS
             //workswitch stuff
             mc.isWorkSwitchEnabled = Settings.Default.setF_IsWorkSwitchEnabled;
             mc.isWorkSwitchActiveLow = Settings.Default.setF_IsWorkSwitchActiveLow;
-
-            // Ray Bear
-            // Steerswitch Stuff
-            mc.isSteerSwitchEnabled = Settings.Default.setF_IsSteerSwitchEnabled;
-            mc.isSteerSwitchActiveLow = Settings.Default.setF_IsSteerSwitchActiveLow;
 
             minFixStepDist = Settings.Default.setF_minFixStep;
 
@@ -823,8 +804,6 @@ namespace AgOpenGPS
                 }
             }
             AutoSteerSettingsOutToPort();
-            // Ray Bear
-            //previousSteerSwitchValue = mc.steerSwitchValue;
         }
 
         //show the UDP ethernet settings page
