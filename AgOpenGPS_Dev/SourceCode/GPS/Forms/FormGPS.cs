@@ -20,7 +20,7 @@ namespace AgOpenGPS
     public partial class FormGPS : Form
     {
         #region // Class Props and instances
-
+ 
         //maximum sections available
         private const int MAXSECTIONS = 13;
 
@@ -218,6 +218,12 @@ namespace AgOpenGPS
         /// </summary>
         public CWorkSwitch workSwitch;
 
+        // Ray Bear
+        /// <summary>
+        /// Class containing steerswitch functionality
+        /// </summary>
+        public CSteerSwitch steerSwitch;
+
         /// <summary>
         /// Self Driving class
         /// </summary>
@@ -327,6 +333,10 @@ namespace AgOpenGPS
 
             // Access to workswitch functionality
             workSwitch = new CWorkSwitch(this);
+ 
+            // Ray Bear
+            // Access to steerswitch functionality
+            steerSwitch = new CSteerSwitch(this);
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)
@@ -477,6 +487,11 @@ namespace AgOpenGPS
             //workswitch stuff
             mc.isWorkSwitchEnabled = Settings.Default.setF_IsWorkSwitchEnabled;
             mc.isWorkSwitchActiveLow = Settings.Default.setF_IsWorkSwitchActiveLow;
+
+            //Ray Bear
+            //Steerswitch stuff
+            mc.isSteerSwitchActiveLow = Settings.Default.setF_IsSteerSwitchActiveLow;
+            mc.isSteerSwitchEnabled = Settings.Default.setF_IsSteerSwitchEnabled;
 
             minFixStepDist = Settings.Default.setF_minFixStep;
 

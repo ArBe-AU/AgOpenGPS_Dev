@@ -118,6 +118,9 @@
             this.lblInchesCm = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
+            this.steerSwitchBox = new System.Windows.Forms.GroupBox();
+            this.ChkEnableSteerSwitch = new System.Windows.Forms.CheckBox();
+            this.ChkSteerSwitchActiveLow = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).BeginInit();
@@ -151,6 +154,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
             this.tabWorkSwitch.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.steerSwitchBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -984,6 +988,7 @@
             // 
             this.tabWorkSwitch.BackgroundImage = global::AgOpenGPS.Properties.Resources.WorkSwitch;
             resources.ApplyResources(this.tabWorkSwitch, "tabWorkSwitch");
+            this.tabWorkSwitch.Controls.Add(this.steerSwitchBox);
             this.tabWorkSwitch.Controls.Add(this.groupBox3);
             this.tabWorkSwitch.Name = "tabWorkSwitch";
             this.tabWorkSwitch.UseVisualStyleBackColor = true;
@@ -1064,6 +1069,26 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // steerSwitchBox
+            // 
+            this.steerSwitchBox.Controls.Add(this.ChkSteerSwitchActiveLow);
+            this.steerSwitchBox.Controls.Add(this.ChkEnableSteerSwitch);
+            resources.ApplyResources(this.steerSwitchBox, "steerSwitchBox");
+            this.steerSwitchBox.Name = "steerSwitchBox";
+            this.steerSwitchBox.TabStop = false;
+            // 
+            // ChkEnableSteerSwitch
+            // 
+            resources.ApplyResources(this.ChkEnableSteerSwitch, "ChkEnableSteerSwitch");
+            this.ChkEnableSteerSwitch.Name = "ChkEnableSteerSwitch";
+            this.ChkEnableSteerSwitch.UseVisualStyleBackColor = true;
+            // 
+            // ChkSteerSwitchActiveLow
+            // 
+            resources.ApplyResources(this.ChkSteerSwitchActiveLow, "ChkSteerSwitchActiveLow");
+            this.ChkSteerSwitchActiveLow.Name = "ChkSteerSwitchActiveLow";
+            this.ChkSteerSwitchActiveLow.UseVisualStyleBackColor = true;
+            // 
             // FormSettings
             // 
             resources.ApplyResources(this, "$this");
@@ -1120,6 +1145,8 @@
             this.tabWorkSwitch.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.steerSwitchBox.ResumeLayout(false);
+            this.steerSwitchBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1216,5 +1243,8 @@
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.NumericUpDown nudMinApplied;
         private System.Windows.Forms.Label lblVehicleToolWidth;
+        private System.Windows.Forms.GroupBox steerSwitchBox;
+        private System.Windows.Forms.CheckBox ChkEnableSteerSwitch;
+        private System.Windows.Forms.CheckBox ChkSteerSwitchActiveLow;
     }
 }
