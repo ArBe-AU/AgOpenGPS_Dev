@@ -86,8 +86,7 @@ namespace AgOpenGPS
                     //Ray Bear
                     //Steer Switch
                     writer.WriteLine("SteerSwitch," + Properties.Settings.Default.setF_IsSteerSwitchEnabled.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("SteerActiveLow," + Properties.Settings.Default.setF_IsSteerSwitchActiveLow.ToString(CultureInfo.InvariantCulture));
-
+                    
                     writer.WriteLine("CamPitch," + Properties.Settings.Default.setCam_pitch.ToString(CultureInfo.InvariantCulture));
 
                     writer.WriteLine("HeadingFromSource," + Properties.Settings.Default.setGPS_headingFromWhichSource);
@@ -304,8 +303,6 @@ namespace AgOpenGPS
                         //Steer Switch
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setF_IsSteerSwitchEnabled = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setF_IsSteerSwitchActiveLow = bool.Parse(words[1]);
 
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setCam_pitch = double.Parse(words[1], CultureInfo.InvariantCulture);
@@ -493,7 +490,6 @@ namespace AgOpenGPS
                         //Ray Bear
                         //Steer Switch
                         mc.isSteerSwitchEnabled = Properties.Settings.Default.setF_IsSteerSwitchEnabled;
-                        mc.isSteerSwitchActiveLow = Properties.Settings.Default.setF_IsSteerSwitchActiveLow;
 
                         //Set width of section and positions for each section
                         SectionSetPosition();

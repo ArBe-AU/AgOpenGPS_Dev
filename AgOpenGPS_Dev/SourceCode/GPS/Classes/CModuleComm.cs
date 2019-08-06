@@ -72,7 +72,7 @@
 
         //Ray Bear
         //For the steerswitch
-        public bool isSteerSwitchActiveLow, isSteerSwitchEnabled;
+        public bool isSteerSwitchEnabled;
 
         //constructor
         public CModuleComm(FormGPS _f)
@@ -90,8 +90,6 @@
             //Ray Bear
             //Steerswitch logic
             isSteerSwitchEnabled = false;
-
-            isSteerSwitchActiveLow = true; //dowes a low, grounded out mean on?
         }
 
         //Reset all the byte arrays from modules

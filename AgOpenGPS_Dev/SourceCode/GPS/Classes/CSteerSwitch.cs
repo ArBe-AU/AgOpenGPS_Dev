@@ -28,9 +28,10 @@
         //Called from "OpenGL.Designer.cs" when requied
         public void CheckSteerSwitch()
         {
-            //Checks the type of steerswitch -> records the trigger value
-            if (mf.mc.isSteerSwitchActiveLow == true) { steerTriggerValue = 2; }
-            else if (mf.mc.isSteerSwitchActiveLow == false) { steerTriggerValue = 1; }
+            // //Checks the type of steerswitch -> records the trigger value
+            // if (mf.mc.isSteerSwitchActiveLow == true) { steerTriggerValue = 2; }
+            // else if (mf.mc.isSteerSwitchActiveLow == false) { steerTriggerValue = 1; }
+            steerTriggerValue = 1;
             //Checks if swtich state has changed -> calls "set" accessor of "CurrentSwitchValue"
             CurrentSteerSwitchValue = mf.mc.steerSwitchValue;
         }

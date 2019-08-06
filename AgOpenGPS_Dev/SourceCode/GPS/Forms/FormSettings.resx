@@ -2406,36 +2406,6 @@ or Overlap</value>
   <data name="tabWorkSwitch.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="ChkSteerSwitchActiveLow.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="ChkSteerSwitchActiveLow.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 15.75pt</value>
-  </data>
-  <data name="ChkSteerSwitchActiveLow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 103</value>
-  </data>
-  <data name="ChkSteerSwitchActiveLow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 29</value>
-  </data>
-  <data name="ChkSteerSwitchActiveLow.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="ChkSteerSwitchActiveLow.Text" xml:space="preserve">
-    <value>Active Low</value>
-  </data>
-  <data name="&gt;&gt;ChkSteerSwitchActiveLow.Name" xml:space="preserve">
-    <value>ChkSteerSwitchActiveLow</value>
-  </data>
-  <data name="&gt;&gt;ChkSteerSwitchActiveLow.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ChkSteerSwitchActiveLow.Parent" xml:space="preserve">
-    <value>steerSwitchBox</value>
-  </data>
-  <data name="&gt;&gt;ChkSteerSwitchActiveLow.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="ChkEnableSteerSwitch.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2464,7 +2434,7 @@ or Overlap</value>
     <value>steerSwitchBox</value>
   </data>
   <data name="&gt;&gt;ChkEnableSteerSwitch.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="steerSwitchBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>23, 27</value>

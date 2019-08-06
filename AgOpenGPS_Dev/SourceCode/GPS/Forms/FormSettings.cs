@@ -27,7 +27,7 @@ namespace AgOpenGPS
 
         // Ray Bear
         // Steer Switch
-        private bool isSteerSwEn, isSteerSwActiveLow;
+        private bool isSteerSwEn;
 
         private readonly double metImp2m, m2MetImp, cutoffMetricImperial, maxWidth;
         private double cutoffSpeed;
@@ -277,12 +277,6 @@ namespace AgOpenGPS
             chkEnableWorkSwitch.Checked = isWorkSwEn;
             chkEnableWorkSwitch.CheckedChanged += chkEnableWorkSwitch_CheckedChanged;
 
-            isSteerSwActiveLow = Properties.Settings.Default.setF_IsSteerSwitchActiveLow;
-
-            ChkSteerSwitchActiveLow.CheckedChanged -= ChkSteerSwitchActiveLow_CheckedChanged;
-            ChkSteerSwitchActiveLow.Checked = isSteerSwActiveLow;
-            ChkSteerSwitchActiveLow.CheckedChanged += ChkSteerSwitchActiveLow_CheckedChanged;
-
             isSteerSwEn = Properties.Settings.Default.setF_IsSteerSwitchEnabled;
 
             ChkEnableSteerSwitch.CheckedChanged -= ChkEnableSteerSwitch_CheckedChanged;
@@ -401,9 +395,6 @@ namespace AgOpenGPS
 
             // Ray Bear
             // Steer Switch
-            mf.mc.isSteerSwitchActiveLow = isSteerSwActiveLow;
-            Properties.Settings.Default.setF_IsSteerSwitchActiveLow = isSteerSwActiveLow;
-
             mf.mc.isSteerSwitchEnabled = isSteerSwEn;
             Properties.Settings.Default.setF_IsSteerSwitchEnabled = isSteerSwEn;
 
@@ -1192,12 +1183,6 @@ namespace AgOpenGPS
         {
             isWorkSwEn = !isWorkSwEn;
             chkEnableWorkSwitch.Checked = isWorkSwEn;
-        }
-
-        private void ChkSteerSwitchActiveLow_CheckedChanged(object sender, EventArgs e)
-        {
-            isSteerSwActiveLow = !isSteerSwActiveLow;
-            ChkSteerSwitchActiveLow.Checked = isSteerSwActiveLow;
         }
 
         private void ChkEnableSteerSwitch_CheckedChanged(object sender, EventArgs e)

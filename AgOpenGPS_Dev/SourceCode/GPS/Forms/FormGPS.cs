@@ -490,7 +490,6 @@ namespace AgOpenGPS
 
             //Ray Bear
             //Steerswitch stuff
-            mc.isSteerSwitchActiveLow = Settings.Default.setF_IsSteerSwitchActiveLow;
             mc.isSteerSwitchEnabled = Settings.Default.setF_IsSteerSwitchEnabled;
 
             minFixStepDist = Settings.Default.setF_minFixStep;
